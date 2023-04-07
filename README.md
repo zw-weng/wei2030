@@ -20,7 +20,9 @@
       <li>I'm currently studying Bachelor of Computer Science (Data Engineering) with honours</li>
       <li>I'm active in playing sport and also have the passion of learning programming</li>
     </ul>
-
+  </p>
+  
+  <p>
     <ul type="square">
       <b>My education</b>
       <li>I studied in SJK(C)Cheng for my primary education</li>
