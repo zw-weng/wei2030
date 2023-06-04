@@ -10,7 +10,11 @@ void cust_login();
 void driver_login();
 void admin_page();
 void add_bus_details();
+void add_destination();
+void add_trip();
 void delete_bus_details();
+void delete_destination();
+void delete_trip();
 void driver_page(string);
 
 // Class Person
@@ -591,7 +595,7 @@ void add_bus_details(){
 		
 		cout << "\n\n\t\tDo you wish to continue your journey?" << endl;
 		cout << "\t\tPress <1> to continue." << endl;
-		cout << "\t\tPress <0> to exit driver page." << endl;
+		cout << "\t\tPress <0> to exit Add Trip Menu." << endl;
 		
 		cout << "\n\n\t\tYour option: ";
 		cin >> opt;
@@ -599,7 +603,7 @@ void add_bus_details(){
 		while(opt!=1 && opt!=0){
 			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
 			cout << "Press <1> to continue." << endl;
-			cout << "Press <0> to exit driver page." << endl;
+			cout << "Press <0> to exit Add Trip Menu." << endl;
 			
 			cout << "\n\n\t\tYour option: ";
 			cin >> opt;
@@ -636,7 +640,59 @@ void add_bus_details(){
 	return;
 }
 
+void add_destination(){
+	
+	fstream dest;
+	dest.open("DESTINATION.txt", ios::in, ios::app);
+	
+	if(!dest.is_open){
+		cout << "Error to open <DESINATION.txt> file" << endl;
+		exit(-1);
+	}
+		
+	system("cls");
+	
+	int count=0;
+	string place;
+	
+	cout << "\n\n\n\t\tCurrent existing destination:" << endl;
+	cout << "\t\t-------------------------------------------" << endl;
+	while(dest >> place){
+		cout << "\t\t" << ++count << ". " << place << endl;
+	}
+	
+	cout << "\n\n\t\tPlace to add:\t";
+	cin >> place;
+	dest << place << endl;
+	
+	dest.close();
+	
+	cout << "\n\n\n\t\tThe destination is added successfully." << endl;
+	cout << "\t\tNow you can add new trip for this destination" << endl;
+}
+
+void add_trip(){
+	
+	fstream trip;
+	trip.open("TRIP.txt",ios::app);
+	
+	if(!trip.is_open){
+		cout << "Error to open <TRIP.txt> file" << endl;
+		exit(-1);
+	}
+	
+	system("cls");
+}
+
 void delete_bus_details(){
+	
+}
+
+void delete_destination(){
+	
+}
+
+void delete_trip(){
 	
 }
 
