@@ -8,6 +8,9 @@ using namespace std;
 void admin_login();
 void cust_login();
 void driver_login();
+void admin_page();
+void add_bus_details();
+void delete_bus_details();
 void driver_page(string);
 
 // Class Person
@@ -20,8 +23,6 @@ class Person{
 		Person(string n, string p) : name(n), phone(p){}
 		
 		virtual void dispDetails() const = 0; // pure virtual function
-		virtual void edit_name() = 0;
-		virtual void edit_phone() = 0;
 };
 
 // Class Admin inherit Person
@@ -75,16 +76,6 @@ class Customer : public Person{
 			cout << "Customer name :\t" << name << endl;
 			cout << "Contact number:\t" << phone << endl;
 			cout << "Customer ID   :\t" << customer_ID << endl;
-		}
-		
-		void edit_name(){
-			cout << "\n\n\t\tEnter your name: ";
-			getline(cin,name);
-		}
-		
-		void edit_phone(){
-			cout << "\n\n\t\tEnter your phone number: ";
-			getline(cin,phone);
 		}
 };
 
@@ -270,6 +261,7 @@ class Login{
 void admin_login(){
 	string username;
 	string password;
+	Login login;
 	
 	system("cls");
 	cout << "\n\n\n\n\t\tEnter username: ";
@@ -310,7 +302,9 @@ void admin_login(){
 	
 	// continue with pass to another function after successfully login
 	// or can continue in this function
+	admin_page();
 	
+	login.login_page();
 }
 
 void cust_login() {
@@ -410,6 +404,240 @@ void driver_login(){
 	driver_page(username);
 	
 	login.login_page();
+}
+
+void admin_page(){
+	Admin admin("Ali Akau Mutu","012-34567890","1001");
+	
+	int opt;
+	
+	system("cls");
+	
+	cout << "\n\n\n\n\t\tAdmin Menu" << endl;
+	cout << "\t\t------------------------------" << endl;
+	cout << "\t\t1. Display admin details" << endl;
+	cout << "\t\t2. Edit admin profile" << endl;
+	cout << "\t\t3. Add trip" << endl;
+	cout << "\t\t4. Delete trip" << endl;
+	cout << "\t\t5. Exit" << endl;
+	
+	cout << "\n\n\t\tPlease enter your option: ";
+	cin >> opt;
+	
+	while(opt!=1 && opt!=2 && opt!=3 && opt!=4 && opt!=5){
+		
+		system("cls");
+		
+		cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
+		cout << "\t\t1. Display admin details" << endl;
+		cout << "\t\t2. Edit admin profile" << endl;
+		cout << "\t\t3. Add trip" << endl;
+		cout << "\t\t4. Delete trip" << endl;
+		cout << "\t\t5. Exit" << endl;
+				
+		cout << "\n\n\t\tYour option: ";
+		cin >> opt;
+	}
+	
+	while(opt != 5){
+		switch(opt){
+			case 1:
+				admin.dispDetails();
+				break;
+				
+			case 2:
+				system("cls");
+				
+				int edit;
+				cout << "\n\n\n\t\tWhich detail would you like to edit?" << endl;
+				cout << "\t\t------------------------------" << endl;
+				cout << "\t\t1. Edit name" << endl;
+				cout << "\t\t2. Edit phone number" << endl;
+				cout << "\t\t3. Edit staff ID" << endl;
+				cout << "\t\t4. Exit" << endl;
+	
+				cout << "\n\n\t\tPlease enter your option: ";
+				cin >> edit;
+				
+				while(opt!=1 && opt!=2 && opt!=3 && opt!=4 && opt!=5){
+		
+					system("cls");
+					
+					cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
+					cout << "\t\t1. Edit name" << endl;
+					cout << "\t\t2. Edit phone number" << endl;
+					cout << "\t\t3. Edit staff ID" << endl;
+					cout << "\t\t4. Exit" << endl;
+							
+					cout << "\n\n\t\tYour option: ";
+					cin >> edit;
+				}
+				
+				switch(edit){
+					case 1:
+						admin.edit_name();
+						cout << "\t\tEdit successfully..." << endl;
+						break;
+						
+					case 2:
+						admin.edit_phone();
+						cout << "\t\tEdit successfully..." << endl;
+						break;
+						
+					case 3:
+						admin.edit_driverID();
+						cout << "\t\tEdit successfully..." << endl;
+						break;
+				}
+				break;
+				
+			case 3: // add trip
+				add_bus_details();
+				break;
+				
+			case 4: // delete trip
+				delete_bus_details();
+				break;
+		}
+		
+		cout << "\n\n\t\tDo you wish to continue your journey?" << endl;
+		cout << "\t\tPress <1> to continue." << endl;
+		cout << "\t\tPress <0> to exit admin page." << endl;
+		
+		cout << "\n\n\t\tYour option: ";
+		cin >> opt;
+		
+		while(opt!=1 && opt!=0){
+			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
+			cout << "Press <1> to continue." << endl;
+			cout << "Press <0> to exit driver page." << endl;
+			
+			cout << "\n\n\t\tYour option: ";
+			cin >> opt;
+		}
+		
+		system("cls");
+		
+		if(opt == 1){
+			cout << "\n\n\n\n\t\tAdmin Menu" << endl;
+			cout << "\t\t------------------------------" << endl;
+			cout << "\t\t1. Display admin details" << endl;
+			cout << "\t\t2. Edit admin profile" << endl;
+			cout << "\t\t3. Add trip" << endl;
+			cout << "\t\t4. Delete trip" << endl;
+			cout << "\t\t5. Exit" << endl;
+			
+			cout << "\n\n\t\tPlease enter your option: ";
+			cin >> opt;
+		}else{
+			break;
+		}
+		
+		cin.ignore();
+		
+		while(opt!=1 && opt!=2 && opt!=3 && opt!=4 && opt!=5){
+			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
+			cout << "\t\t1. Display admin details" << endl;
+			cout << "\t\t2. Edit admin profile" << endl;
+			cout << "\t\t3. Add trip" << endl;
+			cout << "\t\t4. Delete trip" << endl;
+			cout << "\t\t5. Exit" << endl;
+					
+			cout << "\n\n\t\tYour option: ";
+			cin >> opt;
+		}
+	}
+	
+	return;
+}
+
+void add_bus_details(){
+	int opt;
+	
+	system("cls");
+	
+	cout << "\n\n\n\t\tAdd Trip Menu" << endl;
+	cout << "\t\t------------------------------" << endl;
+	cout << "\t\t1. Add destination" << endl;
+	cout << "\t\t2. Add trip" << endl;
+	cout << "\t\t3. Exit" << endl;
+	
+	cout << "\n\n\t\tPlease enter your option: ";
+	cin >> opt;
+	
+	while(opt!=1 && opt!=2 && opt!=3){
+		
+		system("cls");
+		
+		cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
+		cout << "\t\t1. Add destination" << endl;
+		cout << "\t\t2. Add trip" << endl;
+		cout << "\t\t3. Exit" << endl;
+				
+		cout << "\n\n\t\tYour option: ";
+		cin >> opt;
+	}
+	
+	while(opt != 3){
+		switch(opt){
+			case 1:
+				add_destination();
+				break;
+				
+			case 2:
+				add_trip();
+				break;
+		}
+		
+		cout << "\n\n\t\tDo you wish to continue your journey?" << endl;
+		cout << "\t\tPress <1> to continue." << endl;
+		cout << "\t\tPress <0> to exit driver page." << endl;
+		
+		cout << "\n\n\t\tYour option: ";
+		cin >> opt;
+		
+		while(opt!=1 && opt!=0){
+			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
+			cout << "Press <1> to continue." << endl;
+			cout << "Press <0> to exit driver page." << endl;
+			
+			cout << "\n\n\t\tYour option: ";
+			cin >> opt;
+		}
+		
+		system("cls");
+		
+		if(opt == 1){
+			cout << "\n\n\n\t\tAdd Trip Menu" << endl;
+			cout << "\t\t------------------------------" << endl;
+			cout << "\t\t1. Add destination" << endl;
+			cout << "\t\t2. Add trip" << endl;
+			cout << "\t\t3. Exit" << endl;
+			
+			cout << "\n\n\t\tPlease enter your option: ";
+			cin >> opt;
+		}else{
+			break;
+		}
+		
+		cin.ignore();
+		
+		while(opt!=1 && opt!=2 && opt!=3 && opt!=4 && opt!=5){
+			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
+			cout << "\t\t1. Add destination" << endl;
+			cout << "\t\t2. Add trip" << endl;
+			cout << "\t\t3. Exit" << endl;
+					
+			cout << "\n\n\t\tYour option: ";
+			cin >> opt;
+		}
+	}
+	
+	return;
+}
+
+void delete_bus_details(){
+	
 }
 
 void driver_page(string username){
