@@ -479,6 +479,8 @@ void admin_page(){
 					cin >> edit;
 				}
 				
+				cin.ignore();
+				
 				switch(edit){
 					case 1:
 						admin.edit_name();
@@ -491,7 +493,7 @@ void admin_page(){
 						break;
 						
 					case 3:
-						admin.edit_driverID();
+						admin.edit_staffID();
 						cout << "\t\tEdit successfully..." << endl;
 						break;
 				}
@@ -645,9 +647,9 @@ void add_bus_details(){
 void add_destination(){
 	
 	fstream dest;
-	dest.open("DESTINATION.txt", ios::in, ios::app);
+	dest.open("DESTINATION.txt", ios::in);
 	
-	if(!dest.is_open){
+	if(!(dest.is_open())){
 		cout << "Error to open <DESINATION.txt> file" << endl;
 		exit(-1);
 	}
@@ -663,14 +665,20 @@ void add_destination(){
 		cout << "\t\t" << ++count << ". " << place << endl;
 	}
 	
+	dest.close();
+	
+	dest.open("DESTINATION.txt", ios::app);
+	
+	cin.ignore();
+	
 	cout << "\n\n\t\tPlace to add:\t";
 	getline(cin,place);
 	dest << place << endl;
 	
 	dest.close();
 	
-	cout << "\n\n\n\t\tThe destination is added successfully." << endl;
-	cout << "\t\tNow you can add new trip for this destination" << endl;
+	cout << "\t\tThe destination is added successfully." << endl;
+	cout << "\n\t\tNow you can add new trip for this destination..." << endl;
 }
 
 void add_trip(){
@@ -680,7 +688,7 @@ void add_trip(){
 	fstream trip;
 	trip.open("TRIP.txt",ios::app);
 	
-	if(!trip.is_open){
+	if(!trip.is_open()){
 		cout << "Error to open <TRIP.txt> file" << endl;
 		exit(-1);
 	}
@@ -703,9 +711,10 @@ void add_trip(){
 	cout << "\n\t| |DATE|TIME|                                       |";
 	cout << "\n\t| |DATE|TIME|                                       |";
 	cout << "\n\t ---------------------------------------------------";
-	cout << endl;
+	cout << endl;	
 	
 	cout << "\n\n\t\t Enter the new destination:";
+	cin.ignore();
 	getline(cin,data);
 	trip << data << endl;
 	
@@ -719,7 +728,7 @@ void add_trip(){
 	
 	trip.close();
 	
-	cout << "\n\t\tThe trip and its departure time is added successfully."
+	cout << "\n\t\tThe trip and its departure time is added successfully." << endl;
 }
 
 void delete_bus_details(){
