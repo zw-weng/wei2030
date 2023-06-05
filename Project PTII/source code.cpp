@@ -1,5 +1,7 @@
 #include<iostream>
 #include<fstream>
+#include<cstdlib>
+#include<string>
 
 #define STANDARD_SIZE 30
 using namespace std;
@@ -672,6 +674,7 @@ void add_destination(){
 }
 
 void add_trip(){
+	const int infoNum = 11;
 	
 	fstream trip;
 	trip.open("TRIP.txt",ios::app);
@@ -682,6 +685,24 @@ void add_trip(){
 	}
 	
 	system("cls");
+	
+	cout << endl;
+	cout << "\n\t ---------------------------------------------------";
+	cout << "\n\t| Format:                                           |";
+	cout << "\n\t| --------                                          |";
+	cout << "\n\t| <DESTINATION>                                     |";
+	cout << "\n\t| |DATE|TIME|                                       |";
+	cout << "\n\t| |DATE|TIME|                                       |";
+	cout << "\n\t| |DATE|TIME|                                       |";
+	cout << "\n\t| |DATE|TIME|                                       |";
+	cout << "\n\t| |DATE|TIME|                                       |";
+	cout << "\n\t| |DATE|TIME|                                       |";
+	cout << "\n\t| |DATE|TIME|                                       |";
+	cout << "\n\t| |DATE|TIME|                                       |";
+	cout << "\n\t| |DATE|TIME|                                       |";
+	cout << "\n\t| |DATE|TIME|                                       |";
+	cout << "\n\t ---------------------------------------------------";
+	cout << ""
 }
 
 void delete_bus_details(){
