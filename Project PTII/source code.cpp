@@ -862,7 +862,7 @@ void delete_destination(){
 
 void delete_trip(){
 	const int infoNum = 11;
-	int dataCount = 0;
+	int count = 0;
 	int place = 0;
 	string data[200];
 	string delete_trip;
