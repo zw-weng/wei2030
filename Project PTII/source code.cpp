@@ -713,15 +713,15 @@ void add_trip(){
 	cout << "\n\t ---------------------------------------------------";
 	cout << endl;	
 	
-	cout << "\n\n\t\t Enter the new destination:";
+	cout << "\n\n\t Enter the new destination:";
 	cin.ignore();
 	getline(cin,data);
 	trip << data << endl;
 	
-	cout << "\n\n\t\tEnter Date and Time(|DD.MM.YYYY|HHMM) -> without any spacing" << endl;
-	cout << "\t\t------------------------------------------------------------" << endl;
+	cout << "\n\n\tEnter Date and Time(|DD.MM.YYYY|HHMM) -> without any spacing" << endl;
+	cout << "\t------------------------------------------------------------" << endl;
 	for(int i=0; i<infoNum-1; i++){
-		cout << "#" << i+1 << ": ";
+		cout << "\t#" << i+1 << ": ";
 		cin >> data;
 		trip << data << endl;
 	}
@@ -732,15 +732,185 @@ void add_trip(){
 }
 
 void delete_bus_details(){
+	int opt;
 	
+	system("cls");
+	
+	cout << "\n\n\n\t\tDelete Trip Menu" << endl;
+	cout << "\t\t------------------------------" << endl;
+	cout << "\t\t1. Delete destination" << endl;
+	cout << "\t\t2. Delete trip" << endl;
+	cout << "\t\t3. Exit" << endl;
+	
+	cout << "\n\n\t\tPlease enter your option: ";
+	cin >> opt;
+	
+	while(opt!=1 && opt!=2 && opt!=3){
+		
+		system("cls");
+		
+		cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
+		cout << "\t\t1. Delete destination" << endl;
+		cout << "\t\t2. Delete trip" << endl;
+		cout << "\t\t3. Exit" << endl;
+				
+		cout << "\n\n\t\tYour option: ";
+		cin >> opt;
+	}
+	
+	while(opt != 3){
+		switch(opt){
+			case 1:
+				delete_destination();
+				break;
+				
+			case 2:
+				delete_trip();
+				break;
+		}
+		
+		cout << "\n\n\t\tDo you wish to continue your journey?" << endl;
+		cout << "\t\tPress <1> to continue." << endl;
+		cout << "\t\tPress <0> to exit Add Trip Menu." << endl;
+		
+		cout << "\n\n\t\tYour option: ";
+		cin >> opt;
+		
+		while(opt!=1 && opt!=0){
+			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
+			cout << "Press <1> to continue." << endl;
+			cout << "Press <0> to exit Add Trip Menu." << endl;
+			
+			cout << "\n\n\t\tYour option: ";
+			cin >> opt;
+		}
+		
+		system("cls");
+		
+		if(opt == 1){
+			cout << "\n\n\n\t\tAdd Trip Menu" << endl;
+			cout << "\t\t------------------------------" << endl;
+			cout << "\t\t1. Delete destination" << endl;
+			cout << "\t\t2. Delete trip" << endl;
+			cout << "\t\t3. Exit" << endl;
+			
+			cout << "\n\n\t\tPlease enter your option: ";
+			cin >> opt;
+		}else{
+			break;
+		}
+		
+		cin.ignore();
+		
+		while(opt!=1 && opt!=2 && opt!=3 && opt!=4 && opt!=5){
+			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
+			cout << "\t\t1. Delete destination" << endl;
+			cout << "\t\t2. Delete trip" << endl;
+			cout << "\t\t3. Exit" << endl;
+					
+			cout << "\n\n\t\tYour option: ";
+			cin >> opt;
+		}
+	}
+	
+	return;
 }
 
 void delete_destination(){
 	
+	fstream dest;
+	dest.open("DESTINATION.txt", ios::in);
+	
+	if(!(dest.is_open())){
+		cout << "Error to open <DESINATION.txt> file" << endl;
+		exit(-1);
+	}
+		
+	system("cls");
+	
+	int count=0;
+	string place[20];
+	string delete_place;
+	
+	cout << "\n\n\n\t\tCurrent existing destination:" << endl;
+	cout << "\t\t-------------------------------------------" << endl;
+	while(dest >> place[count]){
+		cout << "\t\t" << count+1 << ". " << place[count] << endl;
+		count++;
+	}
+	
+	dest.close();
+	
+	dest.open("DESTINATION.txt", ios::out);
+	
+	cin.ignore();
+	
+	cout << "\n\n\t\tPlace to delete:\t";
+	getline(cin,delete_place);
+	
+	for(int i=0; i<count; i++){
+		if(delete_place == place[i]){
+			continue;
+		}
+		dest << place[i] << endl;
+	}
+	
+	dest.close();
+	
+	cout << "\t\tThe destination is deleted successfully." << endl;
 }
 
 void delete_trip(){
+	const int infoNum = 11;
+	int dataCount = 0;
+	int place = 0;
+	string data[200];
+	string delete_trip;
 	
+	fstream trip;
+	trip.open("TRIP.txt",ios::in);
+	
+	if(!trip.is_open()){
+		cout << "Error to open <TRIP.txt> file" << endl;
+		exit(-1);
+	}
+	
+	system("cls");
+	
+	cout << "\n\n\n\t\tCurrent existing trip:" << endl;
+	cout << "\t\t-------------------------------------------" << endl;
+	while(!(trip.eof())){
+		trip >> data[count];
+		cout << "\t\t" << place++ << ". " << data[count] << endl;
+		count++;
+		
+		for(int i=0; i<10; i++){
+			trip >> data[count];
+			cout << "\t\t" << data[count] << endl;
+			count++;
+		}
+	}
+	
+	trip.close();
+	
+	trip.open("TRIP.txt",ios::out);
+	
+	cout << "\n\n\t Enter the trip to delete:";
+	cin.ignore();
+	getline(cin,delete_trip);
+	trip << delete_trip << endl;
+	
+	for(int i=0; i<count; i++){
+		if(delete_trip == data[i]){
+			i += 10;
+			continue;
+		}
+		trip << data[i] << endl;
+	}
+	
+	trip.close();
+	
+	cout << "\n\t\tThe trip and its departure time is deleted successfully." << endl;
 }
 
 void driver_page(string username){
