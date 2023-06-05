@@ -423,8 +423,8 @@ void admin_page(){
 	cout << "\t\t------------------------------" << endl;
 	cout << "\t\t1. Display admin details" << endl;
 	cout << "\t\t2. Edit admin profile" << endl;
-	cout << "\t\t3. Add trip" << endl;
-	cout << "\t\t4. Delete trip" << endl;
+	cout << "\t\t3. Add bus details" << endl;
+	cout << "\t\t4. Delete bus details" << endl;
 	cout << "\t\t5. Exit" << endl;
 	
 	cout << "\n\n\t\tPlease enter your option: ";
@@ -437,8 +437,8 @@ void admin_page(){
 		cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
 		cout << "\t\t1. Display admin details" << endl;
 		cout << "\t\t2. Edit admin profile" << endl;
-		cout << "\t\t3. Add trip" << endl;
-		cout << "\t\t4. Delete trip" << endl;
+		cout << "\t\t3. Add bus details" << endl;
+		cout << "\t\t4. Delete bus details" << endl;
 		cout << "\t\t5. Exit" << endl;
 				
 		cout << "\n\n\t\tYour option: ";
@@ -529,8 +529,8 @@ void admin_page(){
 			cout << "\t\t------------------------------" << endl;
 			cout << "\t\t1. Display admin details" << endl;
 			cout << "\t\t2. Edit admin profile" << endl;
-			cout << "\t\t3. Add trip" << endl;
-			cout << "\t\t4. Delete trip" << endl;
+			cout << "\t\t3. Add bus details" << endl;
+			cout << "\t\t4. Delete bus details" << endl;
 			cout << "\t\t5. Exit" << endl;
 			
 			cout << "\n\n\t\tPlease enter your option: ";
@@ -545,8 +545,8 @@ void admin_page(){
 			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
 			cout << "\t\t1. Display admin details" << endl;
 			cout << "\t\t2. Edit admin profile" << endl;
-			cout << "\t\t3. Add trip" << endl;
-			cout << "\t\t4. Delete trip" << endl;
+			cout << "\t\t3. Add bus details" << endl;
+			cout << "\t\t4. Delete bus details" << endl;
 			cout << "\t\t5. Exit" << endl;
 					
 			cout << "\n\n\t\tYour option: ";
@@ -664,7 +664,7 @@ void add_destination(){
 	}
 	
 	cout << "\n\n\t\tPlace to add:\t";
-	cin >> place;
+	getline(cin,place);
 	dest << place << endl;
 	
 	dest.close();
@@ -675,6 +675,7 @@ void add_destination(){
 
 void add_trip(){
 	const int infoNum = 11;
+	string data;
 	
 	fstream trip;
 	trip.open("TRIP.txt",ios::app);
@@ -702,7 +703,23 @@ void add_trip(){
 	cout << "\n\t| |DATE|TIME|                                       |";
 	cout << "\n\t| |DATE|TIME|                                       |";
 	cout << "\n\t ---------------------------------------------------";
-	cout << ""
+	cout << endl;
+	
+	cout << "\n\n\t\t Enter the new destination:";
+	getline(cin,data);
+	trip << data << endl;
+	
+	cout << "\n\n\t\tEnter Date and Time(|DD.MM.YYYY|HHMM) -> without any spacing" << endl;
+	cout << "\t\t------------------------------------------------------------" << endl;
+	for(int i=0; i<infoNum-1; i++){
+		cout << "#" << i+1 << ": ";
+		cin >> data;
+		trip << data << endl;
+	}
+	
+	trip.close();
+	
+	cout << "\n\t\tThe trip and its departure time is added successfully."
 }
 
 void delete_bus_details(){
