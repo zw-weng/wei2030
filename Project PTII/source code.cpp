@@ -426,12 +426,134 @@ void cust_login() {
 	cout << "\t\t------------------------------" << endl;
 	cout << "\t\t1. Display customer details" << endl;
 	cout << "\t\t2. Edit customer profile" << endl;
-	cout << "\t\t3. Add bus details" << endl;
-	cout << "\t\t4. Delete bus details" << endl;
+	cout << "\t\t3. Book a ticket" << endl;
+	cout << "\t\t4. Proceed to payment" << endl;
 	cout << "\t\t5. Exit" << endl;
 	
 	cout << "\n\n\t\tPlease enter your option: ";
 	cin >> opt;
+	
+	while(opt!=1 && opt!=2 && opt!=3 && opt!=4 && opt!=5){
+		
+		system("cls");
+		
+		cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
+		cout << "\t\t1. Display customer details" << endl;
+		cout << "\t\t2. Edit customer profile" << endl;
+		cout << "\t\t3. Book a ticket" << endl;
+		cout << "\t\t4. Proceed to payment" << endl;
+		cout << "\t\t5. Exit" << endl;
+				
+		cout << "\n\n\t\tYour option: ";
+		cin >> opt;
+	}
+	
+	while(opt != 5){
+		switch(opt){
+			case 1:
+				cust.dispDetails();
+				break;
+				
+			case 2:
+				system("cls");
+				
+				int edit;
+				cout << "\n\n\n\t\tWhich detail would you like to edit?" << endl;
+				cout << "\t\t------------------------------" << endl;
+				cout << "\t\t1. Edit name" << endl;
+				cout << "\t\t2. Edit phone number" << endl;
+				cout << "\t\t3. Exit" << endl;
+	
+				cout << "\n\n\t\tPlease enter your option: ";
+				cin >> edit;
+				
+				while(opt!=1 && opt!=2 && opt!=3){
+		
+					system("cls");
+					
+					cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
+					cout << "\t\t1. Edit name" << endl;
+					cout << "\t\t2. Edit phone number" << endl;
+					cout << "\t\t3. Exit" << endl;
+							
+					cout << "\n\n\t\tYour option: ";
+					cin >> edit;
+				}
+				
+				cin.ignore();
+				
+				switch(edit){
+					case 1:
+						admin.set_name();
+						cout << "\t\tEdit successfully..." << endl;
+						break;
+						
+					case 2:
+						admin.set_phone();
+						cout << "\t\tEdit successfully..." << endl;
+						break;
+				}
+				break;
+				
+			case 3: 
+				cust.place_to_go();
+				cust.set_total_customer();
+				break;
+				
+			case 4: 
+				cust.print_all();
+				break;
+		}
+		
+		cout << "\n\n\t\tDo you wish to continue your journey?" << endl;
+		cout << "\t\tPress <1> to continue." << endl;
+		cout << "\t\tPress <0> to exit admin page." << endl;
+		
+		cout << "\n\n\t\tYour option: ";
+		cin >> opt;
+		
+		while(opt!=1 && opt!=0){
+			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
+			cout << "Press <1> to continue." << endl;
+			cout << "Press <0> to exit admin page." << endl;
+			
+			cout << "\n\n\t\tYour option: ";
+			cin >> opt;
+		}
+		
+		system("cls");
+		
+		if(opt == 1){
+			cout << "\n\n\n\n\t\tCustomer Menu" << endl;
+			cout << "\t\t------------------------------" << endl;
+			cout << "\t\t1. Display customer details" << endl;
+			cout << "\t\t2. Edit customer profile" << endl;
+			cout << "\t\t3. Book a ticket" << endl;
+			cout << "\t\t4. Proceed to payment" << endl;
+			cout << "\t\t5. Exit" << endl;
+			
+			cout << "\n\n\t\tPlease enter your option: ";
+			cin >> opt;
+		}else{
+			break;
+		}
+		
+		cin.ignore();
+		
+		while(opt!=1 && opt!=2 && opt!=3 && opt!=4 && opt!=5){
+			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
+			cout << "\t\t1. Display customer details" << endl;
+			cout << "\t\t2. Edit customer profile" << endl;
+			cout << "\t\t3. Book a ticket" << endl;
+			cout << "\t\t4. Proceed to payment" << endl;
+			cout << "\t\t5. Exit" << endl;
+					
+			cout << "\n\n\t\tYour option: ";
+			cin >> opt;
+		}
+	}
+	
+	return;
 }
 
 void driver_login(){
