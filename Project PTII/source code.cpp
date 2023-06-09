@@ -163,7 +163,7 @@ class Customer : public Person{
 		}
 		
 		void set_name(){
-			cout << "\n\n\t\tEnter your name: ";
+			cout << "\n\n\n\n\t\tEnter your name: ";
 			getline(cin,name);
 		}
 		
@@ -244,7 +244,7 @@ class Customer : public Person{
 			cout <<fixed << setprecision(2);
 			cout << "\n\n\t\tThe ticket had purchased successfully." << endl;
 			cout << "\n\n\t\tTicket to " << dest[num_of_place].get_destination() << endl;
-			cout << "\t\t------------------------------------------" << endl;
+			cout << "\t\t----------------------------------------------------" << endl;
 			cout << "\t\tNumber of adult -> " << ticket[num_of_place].get_adult() << "\t\tRM " << ticket[num_of_place].get_price_adult() << endl;
 			cout << "\t\tNumber of child -> " << ticket[num_of_place].get_child() << "\t\tRM " << ticket[num_of_place].get_price_child() << endl;
 			
