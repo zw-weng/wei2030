@@ -9,7 +9,7 @@ using namespace std;
 /*
 	List of class
 	------------------
-	1. Address
+	1. Destination
 	2. Person
 	3. Admin
 	4. Customer
@@ -32,9 +32,19 @@ void delete_destination();
 void delete_trip();
 void driver_page(string);
 
-// Class Address
-class Address{
-	
+// Class Destination use for aggregation in class Customer
+class Destination{
+	private:
+		string destination;
+		
+	public:
+		Destination(string dest="") : destination(dest){}
+		
+		void set_destination(string dest){
+			destination.assign(dest);
+		}
+		
+		string get_destination() const {return destination;}
 };
 
 // Class Person
@@ -46,7 +56,10 @@ class Person{
 	public:
 		Person(string n, string p) : name(n), phone(p){}
 		
+		virtual void set_name() = 0; // pure virtual function
+		virtual void set_phone() = 0; // pure virtual function
 		virtual void dispDetails() const = 0; // pure virtual function
+		
 };
 
 // Class Admin inherit Person
@@ -68,12 +81,12 @@ class Admin : public Person{
 			cout << "\t\tStaff ID      :\t" << staff_ID << endl;
 		}
 		
-		void edit_name(){
+		void set_name(){
 			cout << "\n\n\t\tEnter the new name: ";
 			getline(cin,name);
 		}
 		
-		void edit_phone(){
+		void set_phone(){
 			cout << "\n\n\t\tEnter the new phone number: ";
 			getline(cin,phone);
 		}
@@ -88,19 +101,40 @@ class Admin : public Person{
 
 // Class Customer inherit Person
 class Customer : public Person{
-	string customer_ID;
-	int num_of_seat;
+	int num_of_place;
+	Destination *dest;
 	int price;
 	
 	public:
-		Customer(string n, string p, string ID) : Person(n,p), customer_ID(ID){}
+		Customer(string n="", string p="") : Person(n,p){
+			num_of_place = 0;
+			dest = new Destination[13];	// max destination is 13 state in Malaysia
+			set_name();
+			set_phone();
+		}
+		
+		void set_name(){
+			cout << "\n\n\t\tEnter your name: ";
+			getline(cin,name);
+		}
+		
+		void set_phone(){
+			cout << "\n\n\t\tEnter your phone number: ";
+			getline(cin,phone);
+		}
 		
 		void dispDetails() const{
 			
-			cout << "Customer name :\t" << name << endl;
-			cout << "Contact number:\t" << phone << endl;
-			cout << "Customer ID   :\t" << customer_ID << endl;
+			system("cls");
+			
+			cout << "\n\n\n\t\tCustomer Detail" << endl;
+			cout << "\t\t--------------------------------" << endl;
+			
+			cout << "\n\t\tCustomer name : " << name << endl;
+			cout << "\t\tContact number: " << phone << endl;
 		}
+		
+		
 };
 
 // Class Driver inherit Person
@@ -122,12 +156,12 @@ class Driver : public Person{
 			cout << "\t\tDriver ID     :\t" << driver_ID << endl;
 		}
 		
-		void edit_name(){
+		void set_name(){
 			cout << "\n\n\t\tEnter the new name: ";
 			getline(cin,name);
 		}
 		
-		void edit_phone(){
+		void set_phone(){
 			cout << "\n\n\t\tEnter the new phone number: ";
 			getline(cin,phone);
 		}
