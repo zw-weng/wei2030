@@ -225,7 +225,7 @@ class Customer : public Person{
 				getline(cin,destination);
 			}
 			
-			dest[num_of_place].set_destination(place);
+			dest[num_of_place].set_destination(destination);
 			
 		}
 		
@@ -265,6 +265,7 @@ class Customer : public Person{
 			ticket[num_of_place].set_child(child);
 			
 			cout << "\n\n\t\tCalculating price..." << endl;
+			cout << "\t\t";
 			system("pause");
 			system("cls");
 			
@@ -287,7 +288,7 @@ class Customer : public Person{
 			
 			for(int i=0; i<num_of_place; i++){
 				cout << "\n\n\t\tTicket to " << dest[i].get_destination() << endl;
-				cout << "\t\t------------------------------------" << endl;
+				cout << "\t\t---------------------------------------------------" << endl;
 				cout << "\t\tNumber of adult -> " << ticket[i].get_adult() << "\t\tRM " << ticket[i].get_price_adult() << endl;
 				cout << "\t\tNumber of child -> " << ticket[i].get_child() << "\t\tRM " << ticket[i].get_price_child() << endl;
 			}
