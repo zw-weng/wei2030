@@ -6,6 +6,19 @@
 #define STANDARD_SIZE 30
 using namespace std;
 
+/*
+	List of class
+	------------------
+	1. Address
+	2. Person
+	3. Admin
+	4. Customer
+	5. Driver
+	6. Login
+	7. Price
+	8. Ticket
+*/
+
 // Function prototype
 void admin_login();
 void cust_login();
@@ -18,6 +31,11 @@ void delete_bus_details();
 void delete_destination();
 void delete_trip();
 void driver_page(string);
+
+// Class Address
+class Address{
+	
+};
 
 // Class Person
 class Person{
@@ -148,16 +166,21 @@ class Login{
 				cin >> opt;
 			}
 			
+			cin.ignore();
+			
 			switch(opt){
 				case 1:
+					system("cls");
 					admin_login();
 					break;
 					
 				case 2:
+					system("cls");
 					cust_login();
 					break;
 				
 				case 3:
+					system("cls");
 					driver_login();
 					break;
 					
@@ -168,129 +191,23 @@ class Login{
 		}
 };
 
-//// Class Seat
-class Seat{
-	int num_of_seat;
-	bool available;
+// Class Price
+class Price{
 	
-	public:
-		Seat() : num_of_seat(0), available(true) {} // Default constructor
-		Seat(int num) : num_of_seat(num), available(true){}
-		
-		void reserve(){
-			
-		if(available){
-			available = false;
-        	cout << "Seat " << num_of_seat << " reserved." << endl;
-		}
-		else{
-			cout << "Seat " << num_of_seat << " is already occupied." << endl;
-		}
-	}
-
-	bool isAvailable()const{
-		return available;
-	}
-		
-	int getNumber()const {
-		return num_of_seat;
-	}
 };
 
-//// Class Bus
-class Bus {
-    string plate;
-    int capacity;
-    string destination;
-    Seat seats[STANDARD_SIZE];
-    Driver driver;
-
-public:
-	Bus(const string& _plate, int cap, const string& des, const Driver& d) : plate(_plate), capacity(cap), destination(des), driver(d) {
-		// Initialize seats with seat numbers starting from 1
-        for (int i = 0; i < STANDARD_SIZE; ++i) {
-            seats[i] = Seat(i + 1);
-        }
-	}
-
-    void dispSeats() const {
-    	cout << endl;
-        cout << "\t\tSeat Availability:" << endl;
-        cout << "\t\t------------------" << endl;
-        for (int i = 0; i < STANDARD_SIZE; ++i) {
-            cout << "\t\tSeat " << seats[i].getNumber() << ": ";
-            if (seats[i].isAvailable()) {
-               cout << "Available" << endl;
-           } 
-		   else {
-            cout << "Occupied" << endl;
-           }
-       }
-   }
-
-    void disp_driver_details() const {
-        cout << "Driver Details:" << endl;
-        cout << "----------------" << endl;
-        driver.dispDetails();
-    }
-    
-    
-};
-
-//// Class Reservation
-class Reservation{
-	Customer *customer;
-	Bus *bus;
-	Seat *seats[STANDARD_SIZE];
-	int numSeats;
-	int const MAX_SEATS = 40;
+// Class Ticket
+class Ticket{
 	
-	public:
-		Reservation(Customer *cus, Bus *b) : customer(cus), bus(b){}
-		
-		void reserveSeat(Seat *seat){
-			if (seat->isAvailable()) {
-	            if (numSeats < MAX_SEATS) {
-	                seats[numSeats++] = seat;
-	                seat->reserve();
-	            } 
-				else {
-	                cout << "Cannot reserve more seats." << endl;
-	            }
-	        } 
-			else {
-	            cout << "Seat " << seat->getNumber() << " is already occupied." << endl;
-	        }
-		}
-		
-		void disp_Reservation_Detail() const{
-			cout << "Reservation Details:" << endl;
-        	cout << "---------------------" << endl;
-        	// Display customer details
-        	cout << "Customer Details:" << endl;
-        	customer->dispDetails();
-        	cout << endl;
-        	
-        	// Display bus details
-        	cout << "Bus Details:" << endl;
-        	bus->disp_driver_details();
-        	cout << endl;
-        	
-       		cout << "Reserved Seats:" << endl;
-        	for (int i = 0; i < numSeats; ++i) {
-            	cout << "Seat " << seats[i]->getNumber() << endl;
-        	}
-		}
 };
 
 void admin_login(){
 	string username;
 	string password;
 	Login login;
-	
-	system("cls");
+
 	cout << "\n\n\n\n\t\tEnter username: ";
-	cin >> username;
+	getline(cin,username);
 	
 	while(username!="staff"){
 		cout << "\n\t\tWrong username. Try again." << endl;
@@ -301,7 +218,7 @@ void admin_login(){
 		getline(cin,username);
 		cin.ignore();
 		
-		if(username.empty()){
+		if(username == ""){
 			login.login_page();
 		}
 	}
@@ -331,60 +248,7 @@ void admin_login(){
 
 void cust_login() {
 	
-	bool back = false;
 	
-	do {
-		system("cls");
-
-    	Driver driver("Kwang Li", "011-10112377", "D001");
-    	Bus bus("ABC123", STANDARD_SIZE, "Destination", driver);
-    	Customer customer("Ali", "012-2201098", "C001");
-
-    	int opt;
-    	cout << "\n\n\n\n\t\tUser Menu" << endl;
-    	cout << "\t\t------------------------------" << endl;
-    	cout << "\t\t1. Bus trip" << endl;
-    	cout << "\t\t2. Book a trip" << endl;
-    	cout << "\t\t3. Exit" << endl;
-
-    	cout << "\n\n\t\tPlease enter your option: ";
-    	cin >> opt;
-
-    	while ((opt != 1 && opt != 2 && opt != 3)) {
-        cout << "\n\t\tYou entered a wrong option. Please re-input:" << endl;
-        cout << "\t\t1. Bus trip" << endl;
-        cout << "\t\t2. Book a trip" << endl;
-        cout << "\t\t3. Exit" << endl;
-
-        cout << "\n\n\t\tYour option: ";
-        cin >> opt;
-    	}
-
-    	switch (opt) {
-    	case 1:
-    		bus.disp_driver_details();
-        	bus.dispSeats();
-        	cout << endl;
-        	cout << "\t\tBack?" << endl;
-        	cin >> back;
-			break;
-        
-    	case 2: {
-    		Reservation reservation(&customer, &bus);
-    		Seat seat1(1);
-    		Seat seat2(2);
-
-    		reservation.reserveSeat(&seat1);
-    		reservation.reserveSeat(&seat2);
-
-    		reservation.disp_Reservation_Detail();
-    		break;
-		}
-    	case 3:
-        	cout << "\n\n\n\t\tThanks for visiting. Have a nice day" << endl;
-        	exit(1);
-    	}
-	} while (back);
     
 }
 
@@ -393,17 +257,15 @@ void driver_login(){
 	string password;
 	Login login;
 	
-	system("cls");
-	
 	cout << "\n\n\n\n\t\tEnter Username: ";
-	cin >> username;
+	getline(cin,username);
 	
 	while(username!="driver1" && username!="driver2" && username!="driver3"){
 		cout << "\n\tWrong username. Try again." << endl;
 		cout << "\tOR PRESS <ENTER> return to login page" << endl;
 		
 		cout << "\n\tUsername: ";
-		cin >> username;
+		getline(cin,username);
 		cin.ignore();
 		
 		if(username==""){
