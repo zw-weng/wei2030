@@ -122,24 +122,46 @@ class Admin : public Person{
 			cout << "\n\n\n\t\tStaff Detail" << endl;
 			cout << "\t\t--------------------------------" << endl;
 			
-			cout << "\n\t\tStaff name  :\t" << name << endl;
+			cout << "\n\t\tStaff name    :\t" << name << endl;
 			cout << "\t\tContact number:\t" << phone << endl;
 			cout << "\t\tStaff ID      :\t" << staff_ID << endl;
 		}
 		
 		void set_name(){
+			
+			system("cls");
+			
 			cout << "\n\n\t\tEnter the new name: ";
 			getline(cin,name);
+			
 		}
 		
 		void set_phone(){
+			
+			system("cls");
+			
 			cout << "\n\n\t\tEnter the new phone number: ";
 			getline(cin,phone);
+			
 		}
 		
 		void edit_staffID(){
-			cout << "\n\n\t\tEnter your new staff ID: ";
+			
+			system("cls");
+			
+			cout << "\n\n\t\tEnter your new staff ID (must begin with character '1'): ";
 			getline(cin,staff_ID);
+			
+			while(staff_ID.at(0) != '1'){
+				
+				system("cls");
+				
+				cout << "\n\n\t\tYou enter an invalid staff ID. Please re-enter." << endl;
+				cout << "\n\t\tEnter your new staff ID (must begin with character '1'): ";
+				getline(cin,staff_ID);
+				
+			}
+			
 		}
 		
 		
@@ -163,13 +185,17 @@ class Customer : public Person{
 		}
 		
 		void set_name(){
+			
 			cout << "\n\n\n\n\t\tEnter your name: ";
 			getline(cin,name);
+			
 		}
 		
 		void set_phone(){
+			
 			cout << "\n\n\t\tEnter your phone number: ";
 			getline(cin,phone);
+			
 		}
 		
 		void place_to_go(){
@@ -327,24 +353,45 @@ class Driver : public Person{
 			cout << "\n\n\n\t\tDriver Detail" << endl;
 			cout << "\t\t--------------------------------" << endl;
 			
-			cout << "\n\t\tDriver name :\t" << name << endl;
+			cout << "\n\t\tDriver name   :\t" << name << endl;
 			cout << "\t\tContact number:\t" << phone << endl;
 			cout << "\t\tDriver ID     :\t" << driver_ID << endl;
 		}
 		
 		void set_name(){
+			
+			system("cls");
+			
 			cout << "\n\n\t\tEnter the new name: ";
 			getline(cin,name);
+			
 		}
 		
 		void set_phone(){
+			
+			system("cls");
+			
 			cout << "\n\n\t\tEnter the new phone number: ";
 			getline(cin,phone);
+			
 		}
 		
 		void edit_driverID(){
-			cout << "\n\n\t\tEnter your new driver ID: ";
+			
+			system("cls");
+			
+			cout << "\n\n\t\tEnter your new driver ID (must begin with character '3'): ";
 			getline(cin,driver_ID);
+			
+			while(driver_ID.at(0) != '3'){
+				
+				system("cls");
+				
+				cout << "\n\n\t\tYou enter an invalid driver ID. Please re-enter." << endl;
+				cout << "\n\t\tEnter your new driver ID (must begin with character '3'): ";
+				getline(cin,driver_ID);
+				
+			}
 		}
 };
 
@@ -411,31 +458,37 @@ void admin_login(){
 	cout << "\n\n\n\n\t\tEnter username: ";
 	getline(cin,username);
 	
+	if(username == ""){
+		login.login_page();
+	}
+	
 	while(username!="staff"){
 		cout << "\n\t\tWrong username. Try again." << endl;
 		cout << "\t\tOR PRESS <ENTER> return to login page" << endl;
 		
 		cout << "\n\t\tUsername: ";
 		getline(cin,username);
-		cin.ignore();
 		
 		if(username == ""){
 			login.login_page();
 		}
 	}
 	
-	cout << "\t\tEnter Password: ";
+	cout << "\t\tEnter password: ";
 	cin >> password;
+	
+	if(password == ""){
+		login.login_page();
+	}
 	
 	while(password!="abc123"){
 		cout << "\n\t\tWrong password. Try again." << endl;
 		cout << "\t\tOR PRESS <ENTER> return to login page" << endl;
 		
-		cout << "\n\t\tEnter Password: ";
+		cout << "\n\t\tEnter password: ";
 		cin >> password;
-		cin.ignore();
 		
-		if(password==""){
+		if(password == ""){
 			login.login_page();
 		}
 	}
@@ -595,8 +648,12 @@ void driver_login(){
 	string password;
 	Login login;
 	
-	cout << "\n\n\n\n\t\tEnter Username: ";
+	cout << "\n\n\n\n\t\tEnter username: ";
 	getline(cin,username);
+	
+	if(username == ""){
+		login.login_page();
+	}
 	
 	while(username!="driver1" && username!="driver2" && username!="driver3"){
 		cout << "\n\tWrong username. Try again." << endl;
@@ -604,25 +661,27 @@ void driver_login(){
 		
 		cout << "\n\tUsername: ";
 		getline(cin,username);
-		cin.ignore();
 		
-		if(username==""){
+		if(username == ""){
 			login.login_page();
 		}
 	}
 	
-	cout << "\t\tEnter Password: ";
-	cin >> password;
+	cout << "\t\tEnter password: ";
+	getline(cin,password);
+	
+	if(password == ""){
+		login.login_page();
+	}
 	
 	while(password!="abc123"){
 		cout << "\n\tWrong password. Try again." << endl;
 		cout << "\tOR PRESS <ENTER> return to login page" << endl;
 		
-		cout << "\n\tEnter Password: ";
-		cin >> password;
-		cin.ignore();
+		cout << "\n\tEnter password: ";
+		getline(cin,password);
 		
-		if(password==""){
+		if(password == ""){
 			login.login_page();
 		}
 	}
