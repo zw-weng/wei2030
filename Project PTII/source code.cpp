@@ -206,6 +206,8 @@ class Customer : public Person{
 			int adult;
 			int child;
 			
+			system("cls");
+			
 			cout << "\n\n\t\tTicket to " << dest[num_of_place].get_destination() << endl;
 			cout << "\t\t------------------------------------" << endl;
 			
@@ -262,8 +264,8 @@ class Customer : public Person{
 				cout << "\t\tNumber of child -> " << ticket[i].get_child() << "\t\tRM " << ticket[i].get_price_child() << endl;
 			}
 			
-			cout << "Total Payment = RM " << price << endl;
-			cout << "Thank you and byebye" << endl;
+			cout << "\n\n\t\tTotal Payment = RM " << price << endl;
+			cout << "\t\tThank you and byebye" << endl;
 			exit(0);
 		}
 		
@@ -507,7 +509,7 @@ void cust_login() {
 		
 		cout << "\n\n\t\tDo you wish to continue your journey?" << endl;
 		cout << "\t\tPress <1> to continue." << endl;
-		cout << "\t\tPress <0> to exit admin page." << endl;
+		cout << "\t\tPress <0> to exit customer page." << endl;
 		
 		cout << "\n\n\t\tYour option: ";
 		cin >> opt;
@@ -515,7 +517,7 @@ void cust_login() {
 		while(opt!=1 && opt!=0){
 			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
 			cout << "Press <1> to continue." << endl;
-			cout << "Press <0> to exit admin page." << endl;
+			cout << "Press <0> to exit customer page." << endl;
 			
 			cout << "\n\n\t\tYour option: ";
 			cin >> opt;
