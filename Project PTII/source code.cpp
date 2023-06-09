@@ -173,10 +173,10 @@ class Customer : public Person{
 		
 		void place_to_go(){
 			
-			fstream dest;
-			dest.open("DESTINATION.txt", ios::in);
+			fstream d;
+			d.open("DESTINATION.txt", ios::in);
 			
-			if(!(dest.is_open())){
+			if(!(d.is_open())){
 				cout << "Error to open <DESINATION.txt> file" << endl;
 				exit(-1);
 			}
@@ -188,16 +188,16 @@ class Customer : public Person{
 			
 			cout << "\n\n\n\t\tCurrent existing destination:" << endl;
 			cout << "\t\t-------------------------------------------" << endl;
-			while(dest >> place){
+			while(d >> place){
 				cout << "\t\t" << count+1 << ". " << place << endl;
 				count++;
 			}
 			
-			dest.close();
+			d.close();
 			
 			cout << "\n\n\t\tEnter the place you want to go: ";
 			getline(cin,place);
-			dest[num_of_place]->set_destination(place);
+			dest[num_of_place].set_destination(place);
 			
 		}
 		
@@ -206,7 +206,7 @@ class Customer : public Person{
 			int adult;
 			int child;
 			
-			cout << "\n\n\t\tTicket to " << dest[num_of_place]->get_destination() << endl;
+			cout << "\n\n\t\tTicket to " << dest[num_of_place].get_destination() << endl;
 			cout << "\t\t------------------------------------" << endl;
 			
 			cout << "\n\t\tNumber of adult -> ";
@@ -218,7 +218,7 @@ class Customer : public Person{
 				cin >> adult;
 			}
 			
-			cout << "\n\n\t\tTicket to " << dest[num_of_place]->get_destination() << endl;
+			cout << "\n\n\t\tTicket to " << dest[num_of_place].get_destination() << endl;
 			cout << "\t\t------------------------------------" << endl;
 			cout << "\n\t\tNumber of adult -> " << adult << endl;
 			
@@ -231,8 +231,8 @@ class Customer : public Person{
 				cin >> child;
 			}
 			
-			ticket[num_of_place]->set_adult(adult);
-			ticket[num_of_place]->set_child(child);
+			ticket[num_of_place].set_adult(adult);
+			ticket[num_of_place].set_child(child);
 			
 			cout << "\n\n\t\tCalculating price..." << endl;
 			system("pause");
@@ -240,13 +240,13 @@ class Customer : public Person{
 			
 			cout <<fixed << setprecision(2);
 			cout << "\n\n\t\tThe ticket had purchased successfully." << endl;
-			cout << "\n\n\t\tTicket to " << dest[num_of_place]->get_destination() << endl;
+			cout << "\n\n\t\tTicket to " << dest[num_of_place].get_destination() << endl;
 			cout << "\t\t------------------------------------" << endl;
-			cout << "\t\tNumber of adult -> " << ticket[num_of_place]->get_adult() << "\t\tRM " << ticket[num_of_place]->get_price_adult() << endl;
-			cout << "\t\tNumber of child -> " << ticket[num_of_place]->get_child() << "\t\tRM " << ticket[num_of_place]->get_price_child() << endl;
+			cout << "\t\tNumber of adult -> " << ticket[num_of_place].get_adult() << "\t\tRM " << ticket[num_of_place].get_price_adult() << endl;
+			cout << "\t\tNumber of child -> " << ticket[num_of_place].get_child() << "\t\tRM " << ticket[num_of_place].get_price_child() << endl;
 			
-			cout << "\n\n\t\tTotal Price = RM " << ticket[num_of_place]->get_total() << endl;
-			price += ticket[num_of_place]->get_total();
+			cout << "\n\n\t\tTotal Price = RM " << ticket[num_of_place].get_total() << endl;
+			price += ticket[num_of_place].get_total();
 			
 			num_of_place++;
 		}
@@ -256,10 +256,10 @@ class Customer : public Person{
 			dispDetails();
 			
 			for(int i=0; i<num_of_place; i++){
-				cout << "\n\n\t\tTicket to " << dest[i]->get_destination() << endl;
+				cout << "\n\n\t\tTicket to " << dest[i].get_destination() << endl;
 				cout << "\t\t------------------------------------" << endl;
-				cout << "\t\tNumber of adult -> " << ticket[i]->get_adult() << "\t\tRM " << ticket[i]->get_price_adult() << endl;
-				cout << "\t\tNumber of child -> " << ticket[i]->get_child() << "\t\tRM " << ticket[i]->get_price_child() << endl;
+				cout << "\t\tNumber of adult -> " << ticket[i].get_adult() << "\t\tRM " << ticket[i].get_price_adult() << endl;
+				cout << "\t\tNumber of child -> " << ticket[i].get_child() << "\t\tRM " << ticket[i].get_price_child() << endl;
 			}
 			
 			cout << "Total Payment = RM " << price << endl;
