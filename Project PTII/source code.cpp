@@ -1,4 +1,5 @@
 #include<iostream>
+#include<iomanip>
 #include<fstream>
 #include<cstdlib>
 #include<string>
@@ -243,7 +244,7 @@ class Customer : public Person{
 			cout <<fixed << setprecision(2);
 			cout << "\n\n\t\tThe ticket had purchased successfully." << endl;
 			cout << "\n\n\t\tTicket to " << dest[num_of_place].get_destination() << endl;
-			cout << "\t\t------------------------------------" << endl;
+			cout << "\t\t------------------------------------------" << endl;
 			cout << "\t\tNumber of adult -> " << ticket[num_of_place].get_adult() << "\t\tRM " << ticket[num_of_place].get_price_adult() << endl;
 			cout << "\t\tNumber of child -> " << ticket[num_of_place].get_child() << "\t\tRM " << ticket[num_of_place].get_price_child() << endl;
 			
@@ -486,12 +487,12 @@ void cust_login() {
 				
 				switch(edit){
 					case 1:
-						admin.set_name();
+						cust.set_name();
 						cout << "\t\tEdit successfully..." << endl;
 						break;
 						
 					case 2:
-						admin.set_phone();
+						cust.set_phone();
 						cout << "\t\tEdit successfully..." << endl;
 						break;
 				}
