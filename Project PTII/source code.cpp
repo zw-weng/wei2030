@@ -205,6 +205,11 @@ class Customer : public Person{
 			
 		}
 		
+		~Customer(){
+			delete [] dest;
+			delete [] ticket;
+		}
+		
 		void set_name(){
 			
 			cout << "\n\n\n\n\t\tEnter your name: ";
