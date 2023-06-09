@@ -3,20 +3,23 @@
 #include<cstdlib>
 #include<string>
 
-#define STANDARD_SIZE 30
+#define MAX_PLACE 13
+#define ADULT 22.22
+#define CHILD 11.11
+
 using namespace std;
 
 /*
 	List of class
 	------------------
 	1. Destination
-	2. Person
-	3. Admin
-	4. Customer
-	5. Driver
-	6. Login
-	7. Price
-	8. Ticket
+	2. Price
+	3. Ticket
+	4. Person
+	5. Admin
+	6. Customer
+	7. Driver
+	8. Login
 */
 
 // Function prototype
@@ -47,6 +50,47 @@ class Destination{
 		string get_destination() const {return destination;}
 };
 
+// Class Price
+class Price{
+	protected:
+		double price_adult;
+		double price_child;
+		
+	public:
+		double get_price_adult() const {return price_adult;}
+		double get_price_child() const {return price_child;}
+		double get_total() const {return price_adult + price_child;}
+};
+
+// Class Ticket
+class Ticket : public Price{
+	private:
+		int num_of_adult;
+		int num_of_child;
+		
+	public:
+		void set_adult(int n){
+			num_of_adult = n;
+			calc_price_adult();
+		}
+		
+		void set_child(int n){
+			num_of_child = n;
+			calc_price_child();
+		}
+		
+		int get_adult() const {return num_of_adult;}
+		int get_child() const {return num_of_child;}
+		
+		void calc_price_adult(){
+			price_adult = num_of_adult*ADULT;
+		}
+		
+		void calc_price_child(){
+			price_child = num_of_child*CHILD;
+		}
+};
+
 // Class Person
 class Person{
 	protected:
@@ -64,7 +108,8 @@ class Person{
 
 // Class Admin inherit Person
 class Admin : public Person{
-	string staff_ID;
+	private:
+		string staff_ID;
 	
 	public:
 		Admin(string n, string p, string ID) : Person(n,p), staff_ID(ID){}
@@ -101,14 +146,17 @@ class Admin : public Person{
 
 // Class Customer inherit Person
 class Customer : public Person{
-	int num_of_place;
-	Destination *dest;
-	int price;
-	
+	private:
+		int num_of_place;
+		Destination *dest;
+		Ticket *ticket;
+		double price;
+		
 	public:
 		Customer(string n="", string p="") : Person(n,p){
 			num_of_place = 0;
-			dest = new Destination[13];	// max destination is 13 state in Malaysia
+			dest = new Destination[MAX_PLACE]; // max 13 destination (13 state) in Malaysia
+			ticket = new Ticket[MAX_PLACE];
 			set_name();
 			set_phone();
 		}
@@ -121,6 +169,80 @@ class Customer : public Person{
 		void set_phone(){
 			cout << "\n\n\t\tEnter your phone number: ";
 			getline(cin,phone);
+		}
+		
+		void place_to_go(){
+			
+			string place;
+			cout << "\n\n\t\tEnter the place you want to go: ";
+			getline(cin,place);
+			dest[num_of_place]->set_destination(place);
+		}
+		
+		void set_total_customer(){
+			
+			int adult;
+			int child;
+			
+			cout << "\n\n\t\tTicket to " << dest[num_of_place]->get_destination() << endl;
+			cout << "\t\t------------------------------------" << endl;
+			
+			cout << "\n\t\tNumber of adult -> ";
+			cin >> adult;
+			
+			while(adult < 0){
+				cout << "\n\n\t\tYou enter an invalid value. Please re-enter!" << endl;
+				cout << "\n\t\tNumber of adult -> ";
+				cin >> adult;
+			}
+			
+			cout << "\n\n\t\tTicket to " << dest[num_of_place]->get_destination() << endl;
+			cout << "\t\t------------------------------------" << endl;
+			cout << "\n\t\tNumber of adult -> " << adult << endl;
+			
+			cout << "\n\t\tNumber of child -> ";
+			cin >> child;
+			
+			while(child < 0){
+				cout << "\n\n\t\tYou enter an invalid value. Please re-enter!" << endl;
+				cout << "\n\t\tNumber of child -> ";
+				cin >> child;
+			}
+			
+			ticket[num_of_place]->set_adult(adult);
+			ticket[num_of_place]->set_child(child);
+			
+			cout << "\n\n\t\tCalculating price..." << endl;
+			system("pause");
+			system("cls");
+			
+			cout <<fixed << setprecision(2);
+			cout << "\n\n\t\tThe ticket had purchased successfully." << endl;
+			cout << "\n\n\t\tTicket to " << dest[num_of_place]->get_destination() << endl;
+			cout << "\t\t------------------------------------" << endl;
+			cout << "\t\tNumber of adult -> " << ticket[num_of_place]->get_adult() << "\t\tRM " << ticket[num_of_place]->get_price_adult() << endl;
+			cout << "\t\tNumber of child -> " << ticket[num_of_place]->get_child() << "\t\tRM " << ticket[num_of_place]->get_price_child() << endl;
+			
+			cout << "\n\n\t\tTotal Price = RM " << ticket[num_of_place]->get_total() << endl;
+			price += ticket[num_of_place]->get_total();
+			
+			num_of_place++;
+		}
+		
+		void print_all() const{
+			
+			dispDetails();
+			
+			for(int i=0; i<num_of_place; i++){
+				cout << "\n\n\t\tTicket to " << dest[i]->get_destination() << endl;
+				cout << "\t\t------------------------------------" << endl;
+				cout << "\t\tNumber of adult -> " << ticket[i]->get_adult() << "\t\tRM " << ticket[i]->get_price_adult() << endl;
+				cout << "\t\tNumber of child -> " << ticket[i]->get_child() << "\t\tRM " << ticket[i]->get_price_child() << endl;
+			}
+			
+			cout << "Total Payment = RM " << price << endl;
+			cout << "Thank you and byebye" << endl;
+			exit(0);
 		}
 		
 		void dispDetails() const{
@@ -139,7 +261,8 @@ class Customer : public Person{
 
 // Class Driver inherit Person
 class Driver : public Person{
-	string driver_ID;
+	private:
+		string driver_ID;
 	
 	public:
 		Driver(string n, string p, string ID) : Person(n,p), driver_ID(ID){}
@@ -225,16 +348,6 @@ class Login{
 		}
 };
 
-// Class Price
-class Price{
-	
-};
-
-// Class Ticket
-class Ticket{
-	
-};
-
 void admin_login(){
 	string username;
 	string password;
@@ -248,7 +361,6 @@ void admin_login(){
 		cout << "\t\tOR PRESS <ENTER> return to login page" << endl;
 		
 		cout << "\n\t\tUsername: ";
-		//cin >> username;
 		getline(cin,username);
 		cin.ignore();
 		
@@ -282,11 +394,26 @@ void admin_login(){
 
 void cust_login() {
 	
+	Login login;
+	int opt;
+	Customer cust;
 	
-    
+	system("cls");
+	
+	cout << "\n\n\n\n\t\tCustomer Menu" << endl;
+	cout << "\t\t------------------------------" << endl;
+	cout << "\t\t1. Display customer details" << endl;
+	cout << "\t\t2. Edit customer profile" << endl;
+	cout << "\t\t3. Add bus details" << endl;
+	cout << "\t\t4. Delete bus details" << endl;
+	cout << "\t\t5. Exit" << endl;
+	
+	cout << "\n\n\t\tPlease enter your option: ";
+	cin >> opt;
 }
 
 void driver_login(){
+	
 	string username;
 	string password;
 	Login login;
@@ -383,7 +510,7 @@ void admin_page(){
 				cout << "\n\n\t\tPlease enter your option: ";
 				cin >> edit;
 				
-				while(opt!=1 && opt!=2 && opt!=3 && opt!=4 && opt!=5){
+				while(opt!=1 && opt!=2 && opt!=3 && opt!=4){
 		
 					system("cls");
 					
@@ -401,12 +528,12 @@ void admin_page(){
 				
 				switch(edit){
 					case 1:
-						admin.edit_name();
+						admin.set_name();
 						cout << "\t\tEdit successfully..." << endl;
 						break;
 						
 					case 2:
-						admin.edit_phone();
+						admin.set_phone();
 						cout << "\t\tEdit successfully..." << endl;
 						break;
 						
@@ -879,12 +1006,12 @@ void driver_page(string username){
 				break;
 				
 			case 2:
-				driver.edit_name();
+				driver.set_name();
 				cout << "\t\tEdit successfully..." << endl;
 				break;
 				
 			case 3:
-				driver.edit_phone();
+				driver.set_phone();
 				cout << "\t\tEdit successfully..." << endl;
 				break;
 				
