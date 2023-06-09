@@ -126,6 +126,8 @@ class Login{
 		void login_page(){
 			int opt;
 			
+			system("cls");
+			
 			cout << "\n\n\n\t\t========Bus Reservation System=======" << endl;
 			cout << "\n\n\t\t1. ADMIN" << endl;
 			cout << "\t\t2. Customer" << endl;
@@ -295,13 +297,13 @@ void admin_login(){
 		cout << "\t\tOR PRESS <ENTER> return to login page" << endl;
 		
 		cout << "\n\t\tUsername: ";
-		cin >> username;
+		//cin >> username;
+		getline(cin,username);
+		cin.ignore();
 		
-//		// error here to read "ENTER"
-//		if(username=="\0"){
-//			Login login;
-//			login.login_page();
-//		}
+		if(username.empty()){
+			login.login_page();
+		}
 	}
 	
 	cout << "\t\tEnter Password: ";
@@ -313,18 +315,15 @@ void admin_login(){
 		
 		cout << "\n\t\tEnter Password: ";
 		cin >> password;
+		cin.ignore();
 		
-//		// error here to read "ENTER"
-//		if(password=="\0"){
-//			Login login;
-//			login.login_page();
-//		}
+		if(password==""){
+			login.login_page();
+		}
 	}
 	
 	cout << "\n\n\n\t\tLogged in successfully." << endl;
 	
-	// continue with pass to another function after successfully login
-	// or can continue in this function
 	admin_page();
 	
 	login.login_page();
@@ -405,11 +404,11 @@ void driver_login(){
 		
 		cout << "\n\tUsername: ";
 		cin >> username;
+		cin.ignore();
 		
-//		// error here to read "ENTER"
-//		if(username=="\0"){
-//			login.login_page();
-//		}
+		if(username==""){
+			login.login_page();
+		}
 	}
 	
 	cout << "\t\tEnter Password: ";
@@ -421,17 +420,14 @@ void driver_login(){
 		
 		cout << "\n\tEnter Password: ";
 		cin >> password;
+		cin.ignore();
 		
-//		// error here to read "ENTER"
-//		if(password=="\0"){
-//			login.login_page();
-//		}
+		if(password==""){
+			login.login_page();
+		}
 	}
 	
 	cout << "\n\n\n\t\tLogged in successfully." << endl;
-	
-	// continue with pass to another function after successfully login
-	// or can continue in this function
 	
 	driver_page(username);
 	
