@@ -173,10 +173,32 @@ class Customer : public Person{
 		
 		void place_to_go(){
 			
+			fstream dest;
+			dest.open("DESTINATION.txt", ios::in);
+			
+			if(!(dest.is_open())){
+				cout << "Error to open <DESINATION.txt> file" << endl;
+				exit(-1);
+			}
+				
+			system("cls");
+			
 			string place;
+			int count = 0;
+			
+			cout << "\n\n\n\t\tCurrent existing destination:" << endl;
+			cout << "\t\t-------------------------------------------" << endl;
+			while(dest >> place){
+				cout << "\t\t" << count+1 << ". " << place << endl;
+				count++;
+			}
+			
+			dest.close();
+			
 			cout << "\n\n\t\tEnter the place you want to go: ";
 			getline(cin,place);
 			dest[num_of_place]->set_destination(place);
+			
 		}
 		
 		void set_total_customer(){
@@ -563,7 +585,7 @@ void admin_page(){
 		while(opt!=1 && opt!=0){
 			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
 			cout << "Press <1> to continue." << endl;
-			cout << "Press <0> to exit driver page." << endl;
+			cout << "Press <0> to exit admin page." << endl;
 			
 			cout << "\n\n\t\tYour option: ";
 			cin >> opt;
