@@ -256,6 +256,7 @@ class Customer : public Person{
 			bool valid = false;
 			
 			cout << "\n\n\t\tEnter the place you want to go: ";
+			cin.ignore();
 			getline(cin,destination);
 			
 			for(int i=0; i<count; i++){
@@ -586,7 +587,7 @@ void cust_login() {
 	cout << "\t\t2. Edit customer profile" << endl;
 	cout << "\t\t3. Book a ticket" << endl;
 	cout << "\t\t4. Proceed to payment" << endl;
-	cout << "\t\t5. Exit" << endl;
+	cout << "\t\t5. Exit the program" << endl;
 	
 	cout << "\n\n\t\tPlease enter your option: ";
 	cin >> opt;
@@ -600,7 +601,7 @@ void cust_login() {
 		cout << "\t\t2. Edit customer profile" << endl;
 		cout << "\t\t3. Book a ticket" << endl;
 		cout << "\t\t4. Proceed to payment" << endl;
-		cout << "\t\t5. Exit" << endl;
+		cout << "\t\t5. Exit the program" << endl;
 				
 		cout << "\n\n\t\tYour option: ";
 		cin >> opt;
@@ -672,8 +673,8 @@ void cust_login() {
 		}
 		
 		cout << "\n\n\t\tDo you wish to continue your journey?" << endl;
-		cout << "\t\tPress <1> to continue." << endl;
-		cout << "\t\tPress <0> to exit customer page." << endl;
+		cout << "\t\tPress <1> to stay at customer page." << endl;
+		cout << "\t\tPress <0> to exit the program." << endl;
 		
 		cout << "\n\n\t\tYour option: ";
 		cin >> opt;
@@ -681,8 +682,8 @@ void cust_login() {
 		while(opt!=1 && opt!=0){
 			
 			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
-			cout << "Press <1> to continue." << endl;
-			cout << "Press <0> to exit customer page." << endl;
+			cout << "\t\tPress <1> to stay at customer page." << endl;
+			cout << "\t\tPress <0> to exit the program." << endl;
 			
 			cout << "\n\n\t\tYour option: ";
 			cin >> opt;
@@ -699,7 +700,7 @@ void cust_login() {
 			cout << "\t\t2. Edit customer profile" << endl;
 			cout << "\t\t3. Book a ticket" << endl;
 			cout << "\t\t4. Proceed to payment" << endl;
-			cout << "\t\t5. Exit" << endl;
+			cout << "\t\t5. Exit the program" << endl;
 			
 			cout << "\n\n\t\tPlease enter your option: ";
 			cin >> opt;
@@ -719,7 +720,7 @@ void cust_login() {
 			cout << "\t\t2. Edit customer profile" << endl;
 			cout << "\t\t3. Book a ticket" << endl;
 			cout << "\t\t4. Proceed to payment" << endl;
-			cout << "\t\t5. Exit" << endl;
+			cout << "\t\t5. Exit the program" << endl;
 					
 			cout << "\n\n\t\tYour option: ";
 			cin >> opt;
@@ -810,7 +811,7 @@ void admin_page(){
 	cout << "\t\t2. Edit admin profile" << endl;
 	cout << "\t\t3. Add bus details" << endl;
 	cout << "\t\t4. Delete bus details" << endl;
-	cout << "\t\t5. Exit" << endl;
+	cout << "\t\t5. Exit to login page" << endl;
 	
 	cout << "\n\n\t\tPlease enter your option: ";
 	cin >> opt;
@@ -824,7 +825,7 @@ void admin_page(){
 		cout << "\t\t2. Edit admin profile" << endl;
 		cout << "\t\t3. Add bus details" << endl;
 		cout << "\t\t4. Delete bus details" << endl;
-		cout << "\t\t5. Exit" << endl;
+		cout << "\t\t5. Exit to login page" << endl;
 				
 		cout << "\n\n\t\tYour option: ";
 		cin >> opt;
@@ -901,8 +902,8 @@ void admin_page(){
 		}
 		
 		cout << "\n\n\t\tDo you wish to continue your journey?" << endl;
-		cout << "\t\tPress <1> to continue." << endl;
-		cout << "\t\tPress <0> to exit admin page." << endl;
+		cout << "\t\tPress <1> to stay at admin page." << endl;
+		cout << "\t\tPress <0> to log out." << endl;
 		
 		cout << "\n\n\t\tYour option: ";
 		cin >> opt;
@@ -910,8 +911,8 @@ void admin_page(){
 		while(opt!=1 && opt!=0){
 			
 			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
-			cout << "Press <1> to continue." << endl;
-			cout << "Press <0> to exit admin page." << endl;
+			cout << "Press <1> to stay at admin page." << endl;
+			cout << "Press <0> to log out." << endl;
 			
 			cout << "\n\n\t\tYour option: ";
 			cin >> opt;
@@ -928,7 +929,7 @@ void admin_page(){
 			cout << "\t\t2. Edit admin profile" << endl;
 			cout << "\t\t3. Add bus details" << endl;
 			cout << "\t\t4. Delete bus details" << endl;
-			cout << "\t\t5. Exit" << endl;
+			cout << "\t\t5. Exit to login page" << endl;
 			
 			cout << "\n\n\t\tPlease enter your option: ";
 			cin >> opt;
@@ -948,7 +949,7 @@ void admin_page(){
 			cout << "\t\t2. Edit admin profile" << endl;
 			cout << "\t\t3. Add bus details" << endl;
 			cout << "\t\t4. Delete bus details" << endl;
-			cout << "\t\t5. Exit" << endl;
+			cout << "\t\t5. Exit to login page" << endl;
 					
 			cout << "\n\n\t\tYour option: ";
 			cin >> opt;
@@ -1005,7 +1006,7 @@ void add_bus_details(){
 		}
 		
 		cout << "\n\n\t\tDo you wish to continue your journey?" << endl;
-		cout << "\t\tPress <1> to continue." << endl;
+		cout << "\t\tPress <1> to stay at Add Trip Menu." << endl;
 		cout << "\t\tPress <0> to exit Add Trip Menu." << endl;
 		
 		cout << "\n\n\t\tYour option: ";
@@ -1014,7 +1015,7 @@ void add_bus_details(){
 		while(opt!=1 && opt!=0){
 			
 			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
-			cout << "Press <1> to continue." << endl;
+			cout << "Press <1> to stay at Add Trip Menu." << endl;
 			cout << "Press <0> to exit Add Trip Menu." << endl;
 			
 			cout << "\n\n\t\tYour option: ";
@@ -1202,8 +1203,8 @@ void delete_bus_details(){
 		}
 		
 		cout << "\n\n\t\tDo you wish to continue your journey?" << endl;
-		cout << "\t\tPress <1> to continue." << endl;
-		cout << "\t\tPress <0> to exit Add Trip Menu." << endl;
+		cout << "\t\tPress <1> to stay at Delete Trip Menu." << endl;
+		cout << "\t\tPress <0> to exit Delete Trip Menu." << endl;
 		
 		cout << "\n\n\t\tYour option: ";
 		cin >> opt;
@@ -1211,8 +1212,8 @@ void delete_bus_details(){
 		while(opt!=1 && opt!=0){
 			
 			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
-			cout << "Press <1> to continue." << endl;
-			cout << "Press <0> to exit Add Trip Menu." << endl;
+			cout << "Press <1> to stay at Delete Trip Menu." << endl;
+			cout << "Press <0> to exit Delete Trip Menu." << endl;
 			
 			cout << "\n\n\t\tYour option: ";
 			cin >> opt;
@@ -1406,7 +1407,7 @@ void driver_page(string username){
 	cout << "\t\t2. Edit driver name" << endl;
 	cout << "\t\t3. Edit driver phone number" << endl;
 	cout << "\t\t4. Edit driver ID" << endl;
-	cout << "\t\t5. Exit" << endl;
+	cout << "\t\t5. Exit to login page" << endl;
 	
 	cout << "\n\n\t\tPlease enter your option: ";
 	cin >> opt;
@@ -1420,7 +1421,7 @@ void driver_page(string username){
 		cout << "\t\t2. Edit driver name" << endl;
 		cout << "\t\t3. Edit driver phone number" << endl;
 		cout << "\t\t4. Edit driver ID" << endl;
-		cout << "\t\t5. Exit" << endl;
+		cout << "\t\t5. Exit to login page" << endl;
 				
 		cout << "\n\n\t\tYour option: ";
 		cin >> opt;
@@ -1453,8 +1454,8 @@ void driver_page(string username){
 		}
 		
 		cout << "\n\n\t\tDo you wish to continue your journey?" << endl;
-		cout << "\t\tPress <1> to continue." << endl;
-		cout << "\t\tPress <0> to exit driver page." << endl;
+		cout << "\t\tPress <1> to stay at driver page." << endl;
+		cout << "\t\tPress <0> to log out." << endl;
 		
 		cout << "\n\n\t\tYour option: ";
 		cin >> opt;
@@ -1462,8 +1463,8 @@ void driver_page(string username){
 		while(opt!=1 && opt!=0){
 			
 			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
-			cout << "Press <1> to continue." << endl;
-			cout << "Press <0> to exit driver page." << endl;
+			cout << "Press <1> to stay at driver page." << endl;
+			cout << "Press <0> to log out." << endl;
 			
 			cout << "\n\n\t\tYour option: ";
 			cin >> opt;
@@ -1480,7 +1481,7 @@ void driver_page(string username){
 			cout << "\t\t2. Edit driver name" << endl;
 			cout << "\t\t3. Edit driver phone number" << endl;
 			cout << "\t\t4. Edit driver ID" << endl;
-			cout << "\t\t5. Exit" << endl;
+			cout << "\t\t5. Exit to login page" << endl;
 			
 			cout << "\n\n\t\tPlease enter your option: ";
 			cin >> opt;
@@ -1500,7 +1501,7 @@ void driver_page(string username){
 			cout << "\t\t2. Edit driver name" << endl;
 			cout << "\t\t3. Edit driver phone number" << endl;
 			cout << "\t\t4. Edit driver ID" << endl;
-			cout << "\t\t5. Exit" << endl;
+			cout << "\t\t5. Exit to login page" << endl;
 					
 			cout << "\n\n\t\tYour option: ";
 			cin >> opt;
