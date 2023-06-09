@@ -184,20 +184,47 @@ class Customer : public Person{
 				
 			system("cls");
 			
-			string place;
+			string place[20];
 			int count = 0;
 			
 			cout << "\n\n\n\t\tCurrent existing destination:" << endl;
 			cout << "\t\t-------------------------------------------" << endl;
-			while(d >> place){
-				cout << "\t\t" << count+1 << ". " << place << endl;
+			while(d >> place[count]){
+				cout << "\t\t" << count+1 << ". " << place[count] << endl;
 				count++;
 			}
 			
 			d.close();
 			
+			string destination;
+			bool valid = false;
+			
 			cout << "\n\n\t\tEnter the place you want to go: ";
-			getline(cin,place);
+			getline(cin,destination);
+			
+			for(int i=0; i<count; i++){
+				if(destination == place[i]){
+					valid = true;
+					break;
+				}
+			}
+			
+			if(!valid){
+				system("cls");
+				
+				cout << "\n\n\t\tInvalid destination." << endl;
+				cout << "\t\t1. You might enter a non-existing destination" << endl;
+				cout << "\t\t2. You might accidentally face a spelling error" << endl;
+				cout << "\t\t-------------------------------------------------" << endl;
+				
+				for(int i=0; i<count; i++){
+					cout << "\t\t" << i+1 << ". " << place[i] << endl;
+				}
+
+				cout << "\n\t\tPlease try to re-enter a valid destination -> ";
+				getline(cin,destination);
+			}
+			
 			dest[num_of_place].set_destination(place);
 			
 		}
@@ -370,6 +397,8 @@ class Login{
 					cout << "\n\n\n\t\tThanks for visiting. Have a nice day" << endl;
 					exit(1);
 			}
+			
+			cout << "\n\n\n\t\tThanks for visiting. Have a nice day" << endl;
 		}
 };
 
