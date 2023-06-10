@@ -1086,20 +1086,28 @@ void add_destination(){
 		
 	}
 	
+	cin.ignore();
+	
 	dest.close();
 	
-	dest.open("DESTINATION.txt", ios::app);
-	
-	cin.ignore();
+	ofstream append("DESTINATION.txt", ios::app);
 	
 	cout << "\n\n\t\tPlace to add:\t";
 	getline(cin,place);
-	dest << place << endl;
 	
-	dest.close();
-	
-	cout << "\t\tThe destination is added successfully." << endl;
-	cout << "\n\t\tNow you can add new trip for this destination..." << endl;
+	if(append.is_open()){
+		
+		append << place << endl;
+		cout << "\t\tThe destination is added successfully." << endl;
+		cout << "\n\t\tNow you can add new trip for this destination..." << endl;
+		
+	}else{
+		
+		cout << "Unable to oen file";
+		
+	}
+
+	append.close();
 	
 }
 
@@ -1108,7 +1116,7 @@ void add_trip(){
 	const int infoNum = 11;
 	string data;
 	
-	fstream trip;
+	ofstream trip;
 	trip.open("TRIP.txt",ios::app);
 	
 	if(!trip.is_open()){
