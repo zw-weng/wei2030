@@ -1046,8 +1046,6 @@ void add_bus_details(){
 			
 		}
 		
-//		cin.ignore();
-		
 		while(opt!=1 && opt!=2 && opt!=3 && opt!=4 && opt!=5){
 			
 			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
@@ -1092,7 +1090,7 @@ void add_destination(){
 	
 	dest.close();
 	
-	ofstream append("DESTINATION.txt", ios::app);
+	fstream append("DESTINATION.txt", ios::out | ios::app);
 	
 	cout << "\n\n\t\tPlace to add:\t";
 	cin.ignore();
@@ -1119,8 +1117,8 @@ void add_trip(){
 	const int infoNum = 11;
 	string data;
 	
-	ofstream trip;
-	trip.open("TRIP.txt",ios::app);
+	fstream trip;
+	trip.open("TRIP.txt",ios::out | ios::app);
 	
 	if(!trip.is_open()){
 		
