@@ -1503,6 +1503,7 @@ void driver_page(string username){
 
 int main(){
 	
+	system("COLOR 70");
 	Login login;
 	login.login_page();
 	
