@@ -73,6 +73,7 @@ class Price{
 class Ticket : public Price{
 	
 	private:
+		
 		int num_of_adult;
 		int num_of_child;
 		
@@ -804,39 +805,42 @@ void driver_login(){
 void admin_page(){
 	
 	Admin admin("Ali Akau Mutu","012-34567890","1001");
+	Login login;
 	
 	int opt;
 	
-	system("cls");
-	
-	cout << "\n\n\n\n\t\tAdmin Menu" << endl;
-	cout << "\t\t------------------------------" << endl;
-	cout << "\t\t1. Display admin details" << endl;
-	cout << "\t\t2. Edit admin profile" << endl;
-	cout << "\t\t3. Add bus details" << endl;
-	cout << "\t\t4. Delete bus details" << endl;
-	cout << "\t\t5. Exit to login page" << endl;
-	
-	cout << "\n\n\t\tPlease enter your option: ";
-	cin >> opt;
-	
-	while(opt!=1 && opt!=2 && opt!=3 && opt!=4 && opt!=5){
+		
+	do{
 		
 		system("cls");
-		
-		cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
+	
+		cout << "\n\n\n\n\t\tAdmin Menu" << endl;
+		cout << "\t\t------------------------------" << endl;
 		cout << "\t\t1. Display admin details" << endl;
 		cout << "\t\t2. Edit admin profile" << endl;
 		cout << "\t\t3. Add bus details" << endl;
 		cout << "\t\t4. Delete bus details" << endl;
 		cout << "\t\t5. Exit to login page" << endl;
-				
-		cout << "\n\n\t\tYour option: ";
+		
+		cout << "\n\n\t\tPlease enter your option: ";
 		cin >> opt;
 		
-	}
-	
-	while(opt != 5){
+		while(opt!=1 && opt!=2 && opt!=3 && opt!=4 && opt!=5){
+			
+			system("cls");
+			
+			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
+			cout << "\t\t1. Display admin details" << endl;
+			cout << "\t\t2. Edit admin profile" << endl;
+			cout << "\t\t3. Add bus details" << endl;
+			cout << "\t\t4. Delete bus details" << endl;
+			cout << "\t\t5. Exit to login page" << endl;
+					
+			cout << "\n\n\t\tYour option: ";
+			cin >> opt;
+			
+		
+		}
 		
 		switch(opt){
 			
@@ -903,6 +907,11 @@ void admin_page(){
 				delete_bus_details();
 				break;
 				
+			case 5:
+				login.login_page();
+				return;
+						
+				
 		}
 		
 		cout << "\n\n\t\tDo you wish to continue your journey?" << endl;
@@ -927,40 +936,16 @@ void admin_page(){
 		
 		if(opt == 1){
 			
-			cout << "\n\n\n\n\t\tAdmin Menu" << endl;
-			cout << "\t\t------------------------------" << endl;
-			cout << "\t\t1. Display admin details" << endl;
-			cout << "\t\t2. Edit admin profile" << endl;
-			cout << "\t\t3. Add bus details" << endl;
-			cout << "\t\t4. Delete bus details" << endl;
-			cout << "\t\t5. Exit to login page" << endl;
-			
-			cout << "\n\n\t\tPlease enter your option: ";
-			cin >> opt;
+			continue;
 			
 		}else{
 			
+			cout << "\n\n\n\t\tThanks for visiting. Have a nice day" << endl;
 			break;
 			
-		}
+		}	
 		
-//		cin.ignore();
-		
-		while(opt!=1 && opt!=2 && opt!=3 && opt!=4 && opt!=5){
-			
-			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
-			cout << "\t\t1. Display admin details" << endl;
-			cout << "\t\t2. Edit admin profile" << endl;
-			cout << "\t\t3. Add bus details" << endl;
-			cout << "\t\t4. Delete bus details" << endl;
-			cout << "\t\t5. Exit to login page" << endl;
-					
-			cout << "\n\n\t\tYour option: ";
-			cin >> opt;
-			
-		}
-		
-	}
+	}while(opt != 5);
 	
 	return;
 	
