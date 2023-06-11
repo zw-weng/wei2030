@@ -151,6 +151,7 @@ class Admin : public Person{
 			system("cls");
 			
 			cout << "\n\n\t\tEnter the new name: ";
+			cin.ignore();
 			getline(cin,name);
 			
 		}
@@ -160,6 +161,7 @@ class Admin : public Person{
 			system("cls");
 			
 			cout << "\n\n\t\tEnter the new phone number: ";
+			cin.ignore();
 			getline(cin,phone);
 			
 		}
@@ -169,6 +171,7 @@ class Admin : public Person{
 			system("cls");
 			
 			cout << "\n\n\t\tEnter your new staff ID (must begin with character '1'): ";
+			cin.ignore();
 			getline(cin,staff_ID);
 			
 			while(staff_ID.at(0) != '1'){
@@ -213,6 +216,7 @@ class Customer : public Person{
 		void set_name(){
 			
 			cout << "\n\n\n\n\t\tEnter your name: ";
+			cin.ignore();
 			getline(cin,name);
 			
 		}
@@ -220,6 +224,7 @@ class Customer : public Person{
 		void set_phone(){
 			
 			cout << "\n\n\t\tEnter your phone number: ";
+			cin.ignore();
 			getline(cin,phone);
 			
 		}
@@ -411,6 +416,7 @@ class Driver : public Person{
 			system("cls");
 			
 			cout << "\n\n\t\tEnter the new name: ";
+			cin.ignore();
 			getline(cin,name);
 			
 		}
@@ -420,6 +426,7 @@ class Driver : public Person{
 			system("cls");
 			
 			cout << "\n\n\t\tEnter the new phone number: ";
+			cin.ignore();
 			getline(cin,phone);
 			
 		}
@@ -429,6 +436,7 @@ class Driver : public Person{
 			system("cls");
 			
 			cout << "\n\n\t\tEnter your new driver ID (must begin with character '3'): ";
+			cin.ignore();
 			getline(cin,driver_ID);
 			
 			while(driver_ID.at(0) != '3'){
@@ -477,8 +485,6 @@ class Login{
 				
 			}
 			
-			cin.ignore();
-			
 			switch(opt){
 				
 				case 1:
@@ -515,6 +521,7 @@ void admin_login(){
 	Login login;
 
 	cout << "\n\n\n\n\t\tEnter username: ";
+	cin.ignore();
 	getline(cin,username);
 	
 	if(username == ""){
@@ -541,7 +548,7 @@ void admin_login(){
 	}
 	
 	cout << "\t\tEnter password: ";
-	cin >> password;
+	getline(cin, password);
 	
 	if(password == ""){
 		
@@ -555,7 +562,7 @@ void admin_login(){
 		cout << "\t\tOR PRESS <ENTER> return to login page" << endl;
 		
 		cout << "\n\t\tEnter password: ";
-		cin >> password;
+		getline(cin, password);
 		
 		if(password == ""){
 			
@@ -643,8 +650,6 @@ void cust_login() {
 					
 				}
 				
-				cin.ignore();
-				
 				switch(edit){
 					
 					case 1:
@@ -711,8 +716,6 @@ void cust_login() {
 			
 		}
 		
-		cin.ignore();
-		
 		while(opt!=1 && opt!=2 && opt!=3 && opt!=4 && opt!=5){
 			
 			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
@@ -740,6 +743,7 @@ void driver_login(){
 	Login login;
 	
 	cout << "\n\n\n\n\t\tEnter username: ";
+	cin.ignore();
 	getline(cin,username);
 	
 	if(username == ""){
@@ -869,7 +873,7 @@ void admin_page(){
 					
 				}
 				
-				cin.ignore();
+//				cin.ignore();
 				
 				switch(edit){
 					
@@ -940,7 +944,7 @@ void admin_page(){
 			
 		}
 		
-		cin.ignore();
+//		cin.ignore();
 		
 		while(opt!=1 && opt!=2 && opt!=3 && opt!=4 && opt!=5){
 			
@@ -1042,7 +1046,7 @@ void add_bus_details(){
 			
 		}
 		
-		cin.ignore();
+//		cin.ignore();
 		
 		while(opt!=1 && opt!=2 && opt!=3 && opt!=4 && opt!=5){
 			
@@ -1086,13 +1090,12 @@ void add_destination(){
 		
 	}
 	
-	cin.ignore();
-	
 	dest.close();
 	
 	ofstream append("DESTINATION.txt", ios::app);
 	
 	cout << "\n\n\t\tPlace to add:\t";
+	cin.ignore();
 	getline(cin,place);
 	
 	if(append.is_open()){
@@ -1247,8 +1250,6 @@ void delete_bus_details(){
 			
 		}
 		
-		cin.ignore();
-		
 		while(opt!=1 && opt!=2 && opt!=3 && opt!=4 && opt!=5){
 			
 			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
@@ -1298,9 +1299,8 @@ void delete_destination(){
 	
 	dest.open("DESTINATION.txt", ios::out);
 	
-	cin.ignore();
-	
 	cout << "\n\n\t\tPlace to delete:\t";
+	cin.ignore();
 	getline(cin,delete_place);
 	
 	for(int i=0; i<count; i++){
@@ -1499,8 +1499,6 @@ void driver_page(string username){
 			break;
 			
 		}
-		
-		cin.ignore();
 		
 		while(opt!=1 && opt!=2 && opt!=3 && opt!=4 && opt!=5){
 			
