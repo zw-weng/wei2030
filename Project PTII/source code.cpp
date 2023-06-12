@@ -36,7 +36,7 @@ void delete_destination();
 void delete_trip();
 void driver_page(string);
 
-// Class Destination use for aggregation in class Customer
+// Class Desination
 class Destination{
 	
 	private:
@@ -58,7 +58,7 @@ class Destination{
 // Class Price
 class Price{
 	
-	protected:
+	private:
 		double price_adult;
 		double price_child;
 		
@@ -67,43 +67,63 @@ class Price{
 		double get_price_child() const {return price_child;}
 		double get_total() const {return price_adult + price_child;}
 		
+		void calc_price_adult(int n){
+			
+			price_adult = n*ADULT;
+			
+		}
+		
+		void calc_price_child(int n){
+			
+			price_child = n*CHILD;
+			
+		}
+		
 };
 
 // Class Ticket
-class Ticket : public Price{
+class Ticket{
 	
 	private:
 		
+		Price *price;
 		int num_of_adult;
 		int num_of_child;
 		
 	public:
+		Ticket(){
+			
+			price = new Price;
+			
+		}
+		
 		void set_adult(int n){
 			
 			num_of_adult = n;
-			calc_price_adult();
+			price->calc_price_adult(num_of_adult);
 			
 		}
 		
 		void set_child(int n){
 			
 			num_of_child = n;
-			calc_price_child();
+			price->calc_price_child(num_of_child);
 			
 		}
 		
 		int get_adult() const {return num_of_adult;}
 		int get_child() const {return num_of_child;}
 		
-		void calc_price_adult(){
+		void disp_ticket(){
 			
-			price_adult = num_of_adult*ADULT;
-			
+			cout << "\t\tNumber of adult -> " << num_of_adult << "\t\tRM " << price->get_price_adult() << endl;
+			cout << "\t\tNumber of child -> " << num_of_child << "\t\tRM " << price->get_price_child() << endl;
+		
 		}
 		
-		void calc_price_child(){
+		double total_price(){
 			
-			price_child = num_of_child*CHILD;
+			return (price->get_total());
 			
 		}
 		
@@ -224,7 +244,7 @@ class Customer : public Person{
 		
 		void set_phone(){
 			
-			cout << "\n\n\t\tEnter your phone number: ";
+			cout << "\n\t\tEnter your phone number: ";
 			cin.ignore();
 			getline(cin,phone);
 			
@@ -321,6 +341,8 @@ class Customer : public Person{
 				
 			}
 			
+			system("cls");
+			
 			cout << "\n\n\t\tTicket to " << dest[num_of_place].get_destination() << endl;
 			cout << "\t\t------------------------------------" << endl;
 			cout << "\n\t\tNumber of adult -> " << adult << endl;
@@ -348,11 +370,10 @@ class Customer : public Person{
 			cout << "\n\n\t\tThe ticket had purchased successfully." << endl;
 			cout << "\n\n\t\tTicket to " << dest[num_of_place].get_destination() << endl;
 			cout << "\t\t----------------------------------------------------" << endl;
-			cout << "\t\tNumber of adult -> " << ticket[num_of_place].get_adult() << "\t\tRM " << ticket[num_of_place].get_price_adult() << endl;
-			cout << "\t\tNumber of child -> " << ticket[num_of_place].get_child() << "\t\tRM " << ticket[num_of_place].get_price_child() << endl;
+			ticket[num_of_place].disp_ticket();
 			
-			cout << "\n\n\t\tTotal Price = RM " << ticket[num_of_place].get_total() << endl;
-			price += ticket[num_of_place].get_total();
+			cout << "\n\n\t\tTotal Price = RM " << ticket[num_of_place].total_price() << endl;
+			price += ticket[num_of_place].total_price();
 			
 			num_of_place++;
 			
@@ -366,8 +387,7 @@ class Customer : public Person{
 				
 				cout << "\n\n\t\tTicket to " << dest[i].get_destination() << endl;
 				cout << "\t\t---------------------------------------------------" << endl;
-				cout << "\t\tNumber of adult -> " << ticket[i].get_adult() << "\t\tRM " << ticket[i].get_price_adult() << endl;
-				cout << "\t\tNumber of child -> " << ticket[i].get_child() << "\t\tRM " << ticket[i].get_price_child() << endl;
+				ticket[i].disp_ticket();
 				
 			}
 			
@@ -877,8 +897,6 @@ void admin_page(){
 					
 				}
 				
-//				cin.ignore();
-				
 				switch(edit){
 					
 					case 1:
@@ -1077,7 +1095,7 @@ void add_destination(){
 	
 	fstream append("DESTINATION.txt", ios::out | ios::app);
 	
-	cout << "\n\n\t\tPlace to add:\t";
+	cout << "\n\n\t\tPlace to add -> ";
 	cin.ignore();
 	getline(cin,place);
 	
@@ -1132,7 +1150,7 @@ void add_trip(){
 	cout << "\n\t ---------------------------------------------------";
 	cout << endl;	
 	
-	cout << "\n\n\t Enter the new destination:";
+	cout << "\n\n\t Enter the new destination -> ";
 	cin.ignore();
 	getline(cin,data);
 	trip << data << endl;
@@ -1373,6 +1391,7 @@ void delete_trip(){
 void driver_page(string username){
 	
 	Driver driver("","","");
+	Login login;
 	
 	if(username == "driver1"){
 		
@@ -1390,36 +1409,37 @@ void driver_page(string username){
 	
 	int opt;
 	
-	system("cls");
-	
-	cout << "\n\n\n\n\t\tDriver Menu" << endl;
-	cout << "\t\t------------------------------" << endl;
-	cout << "\t\t1. Display driver details" << endl;
-	cout << "\t\t2. Edit driver name" << endl;
-	cout << "\t\t3. Edit driver phone number" << endl;
-	cout << "\t\t4. Edit driver ID" << endl;
-	cout << "\t\t5. Exit to login page" << endl;
-	
-	cout << "\n\n\t\tPlease enter your option: ";
-	cin >> opt;
-	
-	while(opt!=1 && opt!=2 && opt!=3 && opt!=4 && opt!=5){
+	do{
 		
 		system("cls");
-		
-		cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
+	
+		cout << "\n\n\n\n\t\tDriver Menu" << endl;
+		cout << "\t\t------------------------------" << endl;
 		cout << "\t\t1. Display driver details" << endl;
 		cout << "\t\t2. Edit driver name" << endl;
 		cout << "\t\t3. Edit driver phone number" << endl;
 		cout << "\t\t4. Edit driver ID" << endl;
 		cout << "\t\t5. Exit to login page" << endl;
-				
-		cout << "\n\n\t\tYour option: ";
+		
+		cout << "\n\n\t\tPlease enter your option: ";
 		cin >> opt;
 		
-	}
-	
-	while(opt != 5){
+		while(opt!=1 && opt!=2 && opt!=3 && opt!=4 && opt!=5){
+			
+			system("cls");
+			
+			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
+			cout << "\t\t1. Display driver details" << endl;
+			cout << "\t\t2. Edit driver name" << endl;
+			cout << "\t\t3. Edit driver phone number" << endl;
+			cout << "\t\t4. Edit driver ID" << endl;
+			cout << "\t\t5. Exit to login page" << endl;
+					
+			cout << "\n\n\t\tYour option: ";
+			cin >> opt;
+			
+		
+		}
 		
 		switch(opt){
 			
@@ -1432,20 +1452,25 @@ void driver_page(string username){
 				cout << "\t\tEdit successfully..." << endl;
 				break;
 				
-			case 3:
+			case 3: 
 				driver.set_phone();
 				cout << "\t\tEdit successfully..." << endl;
 				break;
 				
-			case 4:
+			case 4: 
 				driver.edit_driverID();
 				cout << "\t\tEdit successfully..." << endl;
 				break;
 				
+			case 5:
+				login.login_page();
+				return;
+						
+				
 		}
 		
 		cout << "\n\n\t\tDo you wish to continue your journey?" << endl;
-		cout << "\t\tPress <1> to stay at driver page." << endl;
+		cout << "\t\tPress <1> to stay at admin page." << endl;
 		cout << "\t\tPress <0> to log out." << endl;
 		
 		cout << "\n\n\t\tYour option: ";
@@ -1454,7 +1479,7 @@ void driver_page(string username){
 		while(opt!=1 && opt!=0){
 			
 			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
-			cout << "Press <1> to stay at driver page." << endl;
+			cout << "Press <1> to stay at admin page." << endl;
 			cout << "Press <0> to log out." << endl;
 			
 			cout << "\n\n\t\tYour option: ";
@@ -1466,37 +1491,16 @@ void driver_page(string username){
 		
 		if(opt == 1){
 			
-			cout << "\n\n\n\n\t\tDriver Menu" << endl;
-			cout << "\t\t------------------------------" << endl;
-			cout << "\t\t1. Display driver details" << endl;
-			cout << "\t\t2. Edit driver name" << endl;
-			cout << "\t\t3. Edit driver phone number" << endl;
-			cout << "\t\t4. Edit driver ID" << endl;
-			cout << "\t\t5. Exit to login page" << endl;
-			
-			cout << "\n\n\t\tPlease enter your option: ";
-			cin >> opt;
+			continue;
 			
 		}else{
 			
+			cout << "\n\n\n\t\tThanks for visiting. Have a nice day" << endl;
 			break;
 			
-		}
+		}	
 		
-		while(opt!=1 && opt!=2 && opt!=3 && opt!=4 && opt!=5){
-			
-			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
-			cout << "\t\t1. Display driver details" << endl;
-			cout << "\t\t2. Edit driver name" << endl;
-			cout << "\t\t3. Edit driver phone number" << endl;
-			cout << "\t\t4. Edit driver ID" << endl;
-			cout << "\t\t5. Exit to login page" << endl;
-					
-			cout << "\n\n\t\tYour option: ";
-			cin >> opt;
-			
-		}
-	}
+	}while(opt != 5);
 	
 	return;
 }
