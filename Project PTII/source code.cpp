@@ -4,6 +4,10 @@
 #include<cstdlib>
 #include<string>
 
+#include <Windows.h>
+#include <stdio.h>
+// #include <graphics.h>
+
 #define MAX_PLACE 13
 #define ADULT 22.22
 #define CHILD 11.11
@@ -1494,10 +1498,12 @@ void driver_page(string username){
 			continue;
 			
 		}else{
-			
-			cout << "\n\n\n\t\tThanks for visiting. Have a nice day" << endl;
-			break;
-			
+			AllocConsole();
+			if (MessageBox(FindWindowA("ConsoleWindowClass", NULL), "Hi, Do you want to exit?", "Bye!!", MB_HELP| MB_ICONHAND | MB_DEFBUTTON2 | MB_SYSTEMMODAL) == IDOK)
+			{
+				cout << "\n\n\n\t\tThanks for visiting. Have a nice day" << endl;
+				break;
+			}
 		}	
 		
 	}while(opt != 5);
@@ -1507,7 +1513,35 @@ void driver_page(string username){
 
 int main(){
 	
+//	initwindow(600, 500, "Bus Reservation System");
+	
 	system("COLOR 70");
+	system("cls");
+	printf("\e[?251");
+	
+	SetConsoleCP(437);
+	SetConsoleOutputCP(437);
+	
+	int bar1 = 177, bar2 = 219;
+	cout << "\n\n\n\t\t\t\taWELCOME BACK!";
+	cout << "\n\t\t\t\t";
+	cout << "\n\n\n\t\t\t\tLoading...";
+	cout << "\n\n\n\t\t\t\t";
+	
+	for(int i = 0; i < 25; i++)
+		cout << (char)bar1;
+		
+	cout << "\r";
+	cout << "\t\t\t\t";
+	for(int i = 0; i < 25; i++)
+	{
+		cout << (char)bar2;
+		Sleep(150);
+	}
+	
+	cout << "\n\t\t\t\t" << (char)1 << "!";
+//	system("Pause");
+	
 	Login login;
 	login.login_page();
 	
