@@ -4,6 +4,10 @@
 #include<cstdlib>
 #include<string>
 
+#include <Windows.h>
+#include <stdio.h>
+// #include <graphics.h>
+
 #define MAX_PLACE 13
 #define ADULT 22.22
 #define CHILD 11.11
@@ -524,12 +528,45 @@ class Login{
 					break;
 					
 				case 4:
-					cout << "\n\n\n\t\tThanks for visiting. Have a nice day" << endl;
-					exit(1);
-					
+					AllocConsole();
+					int msgboxID = MessageBox(FindWindowA("ConsoleWindowClass", NULL), "Thanks for visiting. Have a nice day!", "Bus Reservation System", MB_CANCELTRYCONTINUE | MB_ICONASTERISK | MB_DEFBUTTON2 | MB_SYSTEMMODAL);
+					if (msgboxID == IDCONTINUE)
+					{
+						exit(1);
+					}
+					else if (msgboxID == IDTRYAGAIN)
+					{
+						system("cls");
+						printf("\e[?251");
+						
+						SetConsoleCP(437);
+						SetConsoleOutputCP(437);
+						
+						int bar1 = 177, bar2 = 219;
+						cout << "\n\n\n\t\t\t\taWELCOME BACK!";
+						cout << "\n\t\t\t\t";
+						cout << "\n\n\n\t\t\t\tLoading...";
+						cout << "\n\n\n\t\t\t\t";
+						
+						for(int i = 0; i < 25; i++)
+							cout << (char)bar1;
+							
+						cout << "\r";
+						cout << "\t\t\t\t";
+						for(int i = 0; i < 25; i++)
+						{
+							cout << (char)bar2;
+							Sleep(150);
+						}
+		
+						cout << "\n\t\t\t\t" << (char)1 << "!";
+						login_page();
+					}
+					else
+						login_page();
 			}
 			
-			cout << "\n\n\n\t\tThanks for visiting. Have a nice day" << endl;
+//			cout << "\n\n\n\t\tThanks for visiting. Have a nice day" << endl;
 			
 		}
 		
@@ -732,9 +769,19 @@ void cust_login() {
 			cin >> opt;
 			
 		}else{
-			
-			break;
-			
+			AllocConsole();
+			int msgboxID2 = MessageBox(FindWindowA("ConsoleWindowClass", NULL), "Hi, Do you want to exit?", "Bus Reservation System", MB_YESNO| MB_ICONHAND | MB_DEFBUTTON2 | MB_SYSTEMMODAL);
+			if (msgboxID2 == IDYES)
+			{
+				AllocConsole();
+				int msgboxID = MessageBox(FindWindowA("ConsoleWindowClass", NULL), "Thanks for visiting. Have a nice day!", "Bus Reservation System", MB_OK | MB_ICONASTERISK | MB_DEFBUTTON2 | MB_SYSTEMMODAL);
+				if (msgboxID == IDOK)
+				{
+					exit(1);
+				}
+			}
+			else
+				continue;
 		}
 		
 		while(opt!=1 && opt!=2 && opt!=3 && opt!=4 && opt!=5){
@@ -957,10 +1004,14 @@ void admin_page(){
 			continue;
 			
 		}else{
-			
-			cout << "\n\n\n\t\tThanks for visiting. Have a nice day" << endl;
-			break;
-			
+			AllocConsole();
+			if (MessageBox(FindWindowA("ConsoleWindowClass", NULL), "Hi, Do you want to exit?", "Bus Reservation System", MB_YESNO| MB_ICONHAND | MB_DEFBUTTON2 | MB_SYSTEMMODAL) == IDYES)
+			{
+				cout << "\n\n\n\t\tThanks for visiting. Have a nice day" << endl;
+				break;
+			}
+			else
+				continue;
 		}	
 		
 	}while(opt != 5);
@@ -1470,7 +1521,7 @@ void driver_page(string username){
 		}
 		
 		cout << "\n\n\t\tDo you wish to continue your journey?" << endl;
-		cout << "\t\tPress <1> to stay at admin page." << endl;
+		cout << "\t\tPress <1> to stay at driver page." << endl;
 		cout << "\t\tPress <0> to log out." << endl;
 		
 		cout << "\n\n\t\tYour option: ";
@@ -1479,7 +1530,7 @@ void driver_page(string username){
 		while(opt!=1 && opt!=0){
 			
 			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
-			cout << "Press <1> to stay at admin page." << endl;
+			cout << "Press <1> to stay at driver page." << endl;
 			cout << "Press <0> to log out." << endl;
 			
 			cout << "\n\n\t\tYour option: ";
@@ -1494,10 +1545,14 @@ void driver_page(string username){
 			continue;
 			
 		}else{
-			
-			cout << "\n\n\n\t\tThanks for visiting. Have a nice day" << endl;
-			break;
-			
+			AllocConsole();
+			if (MessageBox(FindWindowA("ConsoleWindowClass", NULL), "Hi, Do you want to exit?", "Bus Reservation System", MB_YESNO| MB_ICONHAND | MB_DEFBUTTON2 | MB_SYSTEMMODAL) == IDYES)
+			{
+				cout << "\n\n\n\t\tThanks for visiting. Have a nice day" << endl;
+				break;
+			}
+			else
+				continue;
 		}	
 		
 	}while(opt != 5);
@@ -1507,7 +1562,35 @@ void driver_page(string username){
 
 int main(){
 	
+//	initwindow(600, 500, "Bus Reservation System");
+	
 	system("COLOR 70");
+	system("cls");
+	printf("\e[?251");
+	
+	SetConsoleCP(437);
+	SetConsoleOutputCP(437);
+	
+	int bar1 = 177, bar2 = 219;
+	cout << "\n\n\n\t\t\t\taWELCOME BACK!";
+	cout << "\n\t\t\t\t";
+	cout << "\n\n\n\t\t\t\tLoading...";
+	cout << "\n\n\n\t\t\t\t";
+	
+	for(int i = 0; i < 25; i++)
+		cout << (char)bar1;
+		
+	cout << "\r";
+	cout << "\t\t\t\t";
+	for(int i = 0; i < 25; i++)
+	{
+		cout << (char)bar2;
+		Sleep(150);
+	}
+	
+	cout << "\n\t\t\t\t" << (char)1 << "!";
+//	system("Pause");
+	
 	Login login;
 	login.login_page();
 	
