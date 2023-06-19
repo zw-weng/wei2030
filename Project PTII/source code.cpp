@@ -6,7 +6,7 @@
 
 #include <Windows.h>
 #include <stdio.h>
-// #include <graphics.h>
+#include <graphics.h>
 
 #define MAX_PLACE 13
 #define ADULT 22.22
@@ -39,6 +39,8 @@ void delete_bus_details();
 void delete_destination();
 void delete_trip();
 void driver_page(string);
+void enter_page();
+void exit_page();
 
 // Class Desination
 class Destination{
@@ -565,9 +567,7 @@ class Login{
 					else
 						login_page();
 			}
-			
-//			cout << "\n\n\n\t\tThanks for visiting. Have a nice day" << endl;
-			
+						
 		}
 		
 };
@@ -1560,18 +1560,62 @@ void driver_page(string username){
 	return;
 }
 
+void enter_page(){
+	initwindow(900, 500, "Bus Reservation System");
+	setbkcolor(WHITE);
+    cleardevice();
+    setcolor(BLUE);
+    
+    settextstyle(BOLD_FONT, HORIZ_DIR, 4);
+    outtextxy(150, 150, "Welcome to Bus Reservation System");
+
+    settextstyle(BOLD_FONT, HORIZ_DIR, 2);
+    outtextxy(300, 250, "Press [E] to login");
+    outtextxy(320, 300, "Press [Q] to log out");
+
+    int key;
+    while (true) {
+        if (kbhit()) {
+        	key = getch();
+        	if (key == 'e') {
+        		closegraph();
+        		break;
+			}
+            if (key == 'q') {
+                closegraph();
+                exit(0);
+            }
+        }
+    }
+}
+
+void exit_page(){
+	AllocConsole();
+	int msgboxID2 = MessageBox(FindWindowA("ConsoleWindowClass", NULL), "Hi, Do you want to exit?", "Bus Reservation System", MB_YESNO| MB_ICONHAND | MB_DEFBUTTON2 | MB_SYSTEMMODAL);
+	
+	if (msgboxID2 == IDYES)
+	{
+		AllocConsole();
+		int msgboxID = MessageBox(FindWindowA("ConsoleWindowClass", NULL), "Thanks for visiting. Have a nice day!", "Bus Reservation System", MB_OK | MB_ICONASTERISK | MB_DEFBUTTON2 | MB_SYSTEMMODAL);
+		
+		if (msgboxID == IDOK)
+		{
+			exit(1);
+		}
+	}
+}
+
 int main(){
 	
-//	initwindow(600, 500, "Bus Reservation System");
-	
+	enter_page();
 	system("COLOR 70");
 	system("cls");
 	printf("\e[?251");
 	
 	SetConsoleCP(437);
 	SetConsoleOutputCP(437);
-	
 	int bar1 = 177, bar2 = 219;
+	
 	cout << "\n\n\n\t\t\t\taWELCOME BACK!";
 	cout << "\n\t\t\t\t";
 	cout << "\n\n\n\t\t\t\tLoading...";
@@ -1582,6 +1626,7 @@ int main(){
 		
 	cout << "\r";
 	cout << "\t\t\t\t";
+	
 	for(int i = 0; i < 25; i++)
 	{
 		cout << (char)bar2;
@@ -1589,8 +1634,6 @@ int main(){
 	}
 	
 	cout << "\n\t\t\t\t" << (char)1 << "!";
-//	system("Pause");
-	
 	Login login;
 	login.login_page();
 	
