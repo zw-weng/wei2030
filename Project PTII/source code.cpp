@@ -4,6 +4,10 @@
 #include<cstdlib>
 #include<string>
 
+#include <Windows.h>
+#include <stdio.h>
+#include <graphics.h>
+
 #define MAX_PLACE 13
 #define ADULT 22.22
 #define CHILD 11.11
@@ -24,6 +28,7 @@ using namespace std;
 */
 
 // Function prototype
+void exit_page();
 void admin_login();
 void cust_login();
 void driver_login();
@@ -35,6 +40,7 @@ void delete_bus_details();
 void delete_destination();
 void delete_trip();
 void driver_page(string);
+void enter_page();
 
 // Class Desination
 class Destination{
@@ -524,16 +530,67 @@ class Login{
 					break;
 					
 				case 4:
-					cout << "\n\n\n\t\tThanks for visiting. Have a nice day" << endl;
-					exit(1);
-					
+					AllocConsole();
+					int msgboxID = MessageBox(FindWindowA("ConsoleWindowClass", NULL), "Thanks for visiting. Have a nice day!", "Bus Reservation System", MB_CANCELTRYCONTINUE | MB_ICONASTERISK | MB_DEFBUTTON2 | MB_SYSTEMMODAL);
+					if (msgboxID == IDCONTINUE)
+					{
+						exit(1);
+					}
+					else if (msgboxID == IDTRYAGAIN)
+					{
+						system("cls");
+						printf("\e[?251");
+						
+						SetConsoleCP(437);
+						SetConsoleOutputCP(437);
+						
+						int bar1 = 177, bar2 = 219;
+						cout << "\n\n\n\t\t\t\taWELCOME BACK!";
+						cout << "\n\t\t\t\t";
+						cout << "\n\n\n\t\t\t\tLoading...";
+						cout << "\n\n\n\t\t\t\t";
+						
+						for(int i = 0; i < 25; i++)
+							cout << (char)bar1;
+							
+						cout << "\r";
+						cout << "\t\t\t\t";
+						for(int i = 0; i < 25; i++)
+						{
+							cout << (char)bar2;
+							Sleep(150);
+						}
+		
+						cout << "\n\t\t\t\t" << (char)1 << "!";
+						login_page();
+					}
+					else
+						login_page();
 			}
 			
-			cout << "\n\n\n\t\tThanks for visiting. Have a nice day" << endl;
+//			cout << "\n\n\n\t\tThanks for visiting. Have a nice day" << endl;
 			
 		}
 		
 };
+
+void exit_page(){
+	AllocConsole();
+	int msgboxID2 = MessageBox(FindWindowA("ConsoleWindowClass", NULL), "Hi, Do you want to exit?", "Bus Reservation System", MB_YESNO| MB_ICONHAND | MB_DEFBUTTON2 | MB_SYSTEMMODAL);
+	
+	if (msgboxID2 == IDYES)
+	{
+		AllocConsole();
+		int msgboxID = MessageBox(FindWindowA("ConsoleWindowClass", NULL), "Thanks for visiting. Have a nice day!", "Bus Reservation System", MB_OK | MB_ICONASTERISK | MB_DEFBUTTON2 | MB_SYSTEMMODAL);
+		
+		if (msgboxID == IDOK)
+		{
+			exit(1);
+		}
+	}
+//	else
+//		continue;
+}
 
 void admin_login(){
 	
@@ -733,7 +790,7 @@ void cust_login() {
 			
 		}else{
 			
-			break;
+			exit_page();
 			
 		}
 		
@@ -958,8 +1015,7 @@ void admin_page(){
 			
 		}else{
 			
-			cout << "\n\n\n\t\tThanks for visiting. Have a nice day" << endl;
-			break;
+			exit_page();
 			
 		}	
 		
@@ -1045,7 +1101,7 @@ void add_bus_details(){
 			
 		}else{
 			
-			break;
+			exit_page();
 			
 		}
 		
@@ -1107,7 +1163,7 @@ void add_destination(){
 		
 	}else{
 		
-		cout << "Unable to oen file";
+		cout << "Unable to open file";
 		
 	}
 
@@ -1247,7 +1303,7 @@ void delete_bus_details(){
 			
 		}else{
 			
-			break;
+			exit_page();
 			
 		}
 		
@@ -1470,7 +1526,7 @@ void driver_page(string username){
 		}
 		
 		cout << "\n\n\t\tDo you wish to continue your journey?" << endl;
-		cout << "\t\tPress <1> to stay at admin page." << endl;
+		cout << "\t\tPress <1> to stay at driver page." << endl;
 		cout << "\t\tPress <0> to log out." << endl;
 		
 		cout << "\n\n\t\tYour option: ";
@@ -1479,7 +1535,7 @@ void driver_page(string username){
 		while(opt!=1 && opt!=0){
 			
 			cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
-			cout << "Press <1> to stay at admin page." << endl;
+			cout << "Press <1> to stay at driver page." << endl;
 			cout << "Press <0> to log out." << endl;
 			
 			cout << "\n\n\t\tYour option: ";
@@ -1495,8 +1551,7 @@ void driver_page(string username){
 			
 		}else{
 			
-			cout << "\n\n\n\t\tThanks for visiting. Have a nice day" << endl;
-			break;
+			exit_page();
 			
 		}	
 		
@@ -1507,10 +1562,66 @@ void driver_page(string username){
 
 int main(){
 	
+	enter_page();
 	system("COLOR 70");
+	system("cls");
+	printf("\e[?251");
+	
+	SetConsoleCP(437);
+	SetConsoleOutputCP(437);
+	int bar1 = 177, bar2 = 219;
+	
+	cout << "\n\n\n\t\t\t\taWELCOME BACK!";
+	cout << "\n\t\t\t\t";
+	cout << "\n\n\n\t\t\t\tLoading...";
+	cout << "\n\n\n\t\t\t\t";
+	
+	for(int i = 0; i < 25; i++)
+		cout << (char)bar1;
+		
+	cout << "\r";
+	cout << "\t\t\t\t";
+	
+	for(int i = 0; i < 25; i++)
+	{
+		cout << (char)bar2;
+		Sleep(150);
+	}
+	
+	cout << "\n\t\t\t\t" << (char)1 << "!";
+//	system("Pause");
 	Login login;
 	login.login_page();
 	
 	return 0;
-	
+}
+
+void enter_page(){
+	initwindow(900, 500, "Bus Reservation System");
+	setbkcolor(WHITE);
+    cleardevice();
+    setcolor(BLUE);
+    
+    settextstyle(BOLD_FONT, HORIZ_DIR, 4);
+    outtextxy(150, 150, "Welcome to Bus Reservation System");
+
+    settextstyle(BOLD_FONT, HORIZ_DIR, 2);
+    outtextxy(300, 250, "Press [ENTER] to login");
+    outtextxy(320, 300, "Press [Q] to log out");
+
+    int key;
+    while (true) {
+        if (kbhit()) {
+            if (key = 'Enter' || 'ENTER'){
+            	break;
+			}
+            if (key == 'q' || key == 'Q') {
+                closegraph();
+                exit(0);
+            }
+            break;
+        }
+    }
+    getch();
+	closegraph();
 }
