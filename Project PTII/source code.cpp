@@ -1610,7 +1610,7 @@ int main(){
 	enter_page();
 	system("COLOR 70");
 	system("cls");
-	printf("\e[?251");
+	printf("\e[?25l");
 	
 	SetConsoleCP(437);
 	SetConsoleOutputCP(437);
