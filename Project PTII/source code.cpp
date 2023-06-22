@@ -1632,7 +1632,7 @@ int main(){
 	SetConsoleOutputCP(437);
 	int bar1 = 177, bar2 = 219;
 	
-	cout << "\n\n\n\t\t\t\taWELCOME BACK!";
+	cout << "\n\n\n\t\t\t\tWELCOME BACK!";
 	cout << "\n\t\t\t\t";
 	cout << "\n\n\n\t\t\t\tLoading...";
 	cout << "\n\n\n\t\t\t\t";
