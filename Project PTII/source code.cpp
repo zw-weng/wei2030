@@ -1398,7 +1398,7 @@ void delete_trip(){
 	while(!(trip.eof())){
 		
 		trip >> data[count];
-		cout << "\t\t" << place++ << ". " << data[count] << endl;
+		cout << "\t\t" << ++place << ". " << data[count] << endl;
 		count++;
 		
 		for(int i=0; i<10; i++){
@@ -1418,7 +1418,6 @@ void delete_trip(){
 	cout << "\n\n\t Enter the trip to delete:";
 	cin.ignore();
 	getline(cin,delete_trip);
-	trip << delete_trip << endl;
 	
 	for(int i=0; i<count; i++){
 		
