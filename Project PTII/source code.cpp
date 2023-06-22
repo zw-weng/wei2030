@@ -1561,6 +1561,7 @@ void driver_page(string username){
 }
 
 void enter_page(){
+	
 	initwindow(900, 500, "Bus Reservation System");
 	setbkcolor(WHITE);
     cleardevice();
@@ -1575,34 +1576,49 @@ void enter_page(){
 
     int key;
     while (true) {
+    	
         if (kbhit()) {
+        	
         	key = getch();
         	if (key == 'e') {
+        		
         		closegraph();
         		break;
+        		
 			}
             if (key == 'q') {
+            	
                 closegraph();
                 exit(0);
+                
             }
+            
         }
+        
     }
+    
 }
 
 void exit_page(){
+	
 	AllocConsole();
 	int msgboxID2 = MessageBox(FindWindowA("ConsoleWindowClass", NULL), "Hi, Do you want to exit?", "Bus Reservation System", MB_YESNO| MB_ICONHAND | MB_DEFBUTTON2 | MB_SYSTEMMODAL);
 	
 	if (msgboxID2 == IDYES)
 	{
+		
 		AllocConsole();
 		int msgboxID = MessageBox(FindWindowA("ConsoleWindowClass", NULL), "Thanks for visiting. Have a nice day!", "Bus Reservation System", MB_OK | MB_ICONASTERISK | MB_DEFBUTTON2 | MB_SYSTEMMODAL);
 		
 		if (msgboxID == IDOK)
 		{
+			
 			exit(1);
+			
 		}
+		
 	}
+	
 }
 
 int main(){
