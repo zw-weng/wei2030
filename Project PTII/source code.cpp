@@ -1351,7 +1351,7 @@ void delete_destination(){
 	
 	dest.open("DESTINATION.txt", ios::out);
 	
-	cout << "\n\n\t\tPlace to delete:\t";
+	cout << "\n\n\t\tPlace to delete: ";
 	cin.ignore();
 	getline(cin,delete_place);
 	
@@ -1415,7 +1415,7 @@ void delete_trip(){
 	
 	trip.open("TRIP.txt",ios::out);
 	
-	cout << "\n\n\t Enter the trip to delete:";
+	cout << "\n\n\t Enter the trip to delete: ";
 	cin.ignore();
 	getline(cin,delete_trip);
 	
