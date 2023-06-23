@@ -491,7 +491,7 @@ class Login{
 			system("cls");
 			
 			cout << "\n\n\n\t\t========Bus Reservation System=======" << endl;
-			cout << "\n\n\t\t1. ADMIN" << endl;
+			cout << "\n\n\t\t1. Admin" << endl;
 			cout << "\t\t2. Customer" << endl;
 			cout << "\t\t3. Driver" << endl;
 			cout << "\t\t4. Exit" << endl;
@@ -502,7 +502,7 @@ class Login{
 			while((opt!=1 && opt!=2 && opt!=3 && opt!=4)){
 				
 				cout << "\n\t\tYou enter a wrong option. Please re-input:" << endl;
-				cout << "\n\n\t\t1. ADMIN" << endl;
+				cout << "\n\n\t\t1. Admin" << endl;
 				cout << "\t\t2. Customer" << endl;
 				cout << "\t\t3. Driver" << endl;
 				cout << "\t\t4. Exit" << endl;
